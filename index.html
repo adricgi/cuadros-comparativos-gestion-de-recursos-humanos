@@ -1,0 +1,2713 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerencia de Talento Humano | Primera Asignación - Postgrado en Administración (IIA - ULA)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Inter & Merriweather for Corporate Executive Look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        corporate: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            200: '#bcccdc',
+                            300: '#9fb3c8',
+                            400: '#829ab1',
+                            500: '#627d98',
+                            600: '#486581',
+                            700: '#334e68',
+                            800: '#243b53',
+                            900: '#102a43',
+                            950: '#0a1929',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Corporate Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        /* Smooth View Transitions */
+        .view-fade {
+            animation: fadeInView 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInView {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Card Hover Effects */
+        .portal-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .portal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+        }
+        .portal-card:hover .portal-bg-img {
+            transform: scale(1.07);
+        }
+        .portal-bg-img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Dimension Active Indicator */
+        .dim-btn-active {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.4);
+        }
+
+        /* Highlight search matches */
+        mark.search-highlight {
+            background-color: #fef08a;
+            color: #0f172a;
+            padding: 0 3px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between bg-slate-50 selection:bg-blue-600 selection:text-white">
+
+    <!-- TOP EXECUTIVE NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 glass-dark text-white shadow-lg no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <!-- Brand / Home Trigger -->
+            <button onclick="navigateTo('home')" class="flex items-center gap-3 text-left group focus:outline-none">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-building-user text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-[10px] sm:text-[11px] uppercase tracking-widest text-blue-300 font-semibold block leading-none">ULA · IIA · Postgrado en Administración (Mención Gerencia)</span>
+                    <span class="text-sm sm:text-base font-bold tracking-tight text-white flex items-center gap-2 mt-0.5">
+                        Gerencia de Talento Humano
+                    </span>
+                </div>
+            </button>
+
+            <!-- Navigation Pills -->
+            <nav class="flex items-center gap-1.5 sm:gap-2 bg-slate-800/90 p-1.5 rounded-xl border border-slate-700/80">
+                <button id="nav-home" onclick="navigateTo('home')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-blue-600 text-white shadow-sm">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="hidden md:inline">Portada Principal</span>
+                </button>
+                <button id="nav-cuadro1" onclick="navigateTo('cuadro1')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/60">
+                    <i class="fa-solid fa-users-gear text-blue-400"></i>
+                    <span>Cuadro 1: <span class="hidden sm:inline">Recurso · Capital · Talento</span></span>
+                </button>
+                <button id="nav-cuadro2" onclick="navigateTo('cuadro2')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/60">
+                    <i class="fa-solid fa-sitemap text-emerald-400"></i>
+                    <span>Cuadro 2: <span class="hidden sm:inline">Administración · Gerencia · Gestión</span></span>
+                </button>
+            </nav>
+
+            <!-- Quick Reference / Print Utility -->
+            <div class="hidden lg:flex items-center gap-2">
+                <div class="px-3 py-1 rounded-lg bg-slate-800/90 border border-slate-700 text-[11px] text-slate-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-user-graduate text-blue-400"></i>
+                    <span class="font-semibold text-white">Lcda. Adriana C. Gonzalez I.</span>
+                </div>
+                <button onclick="scrollToReferences()" id="btn-top-refs" class="hidden px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 transition-all items-center gap-1.5">
+                    <i class="fa-solid fa-book-bookmark text-amber-400"></i>
+                    <span>Referencias APA</span>
+                </button>
+                <button onclick="window.print()" title="Imprimir o guardar vista en PDF" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors">
+                    <i class="fa-solid fa-print"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow">
+
+        <!-- =====================================================================
+             VIEW 1: PORTADA / PÁGINA PRINCIPAL (HOME VIEW)
+             ===================================================================== -->
+        <section id="view-home" class="view-fade">
+            <!-- Hero Section with Corporate Stock Background -->
+            <div class="relative bg-slate-900 text-white overflow-hidden">
+                <!-- Background Corporate Image -->
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=85" 
+                         alt="Arquitectura Corporativa Moderna" 
+                         class="w-full h-full object-cover opacity-30 scale-105"
+                         onerror="this.src='https://placehold.co/1920x1080/0f172a/38bdf8?text=Gerencia+de+Talento+Humano'">
+                    <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-blue-950/75"></div>
+                    <div class="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:32px_32px] opacity-15"></div>
+                </div>
+
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 lg:pt-16 lg:pb-24">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <!-- Left Column: Academic Heading & Description -->
+                        <div class="lg:col-span-7">
+                            <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-xs sm:text-sm font-medium mb-5">
+                                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                                <span>Primera Asignación · Unidad Curricular: Gerencia de Talento Humano</span>
+                            </div>
+
+                            <p class="text-xs sm:text-sm uppercase tracking-widest text-cyan-300 font-bold mb-2">
+                                Universidad de Los Andes · Instituto de Investigaciones en Administración (IIA)
+                            </p>
+                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-4">
+                                Gerencia de <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300">Talento Humano</span>
+                            </h1>
+                            <p class="text-sm sm:text-base text-blue-200 font-semibold mb-4">
+                                Postgrado en Administración · Mención Gerencia
+                            </p>
+                            <p class="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal mb-8">
+                                Análisis epistemológico, estratégico y organizacional a través de dos cuadros comparativos. En los mismos se explora la evolución conceptual desde el paradigma del recurso hasta el talento, y la articulación directiva entre administración, gerencia y gestión.
+                            </p>
+
+                            <!-- Quick Academic Metadata Pills -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+                                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5">
+                                    <div class="text-blue-400 text-xs font-semibold uppercase tracking-wider">Asignación I</div>
+                                    <div class="text-xl font-bold text-white mt-0.5">2 Cuadros</div>
+                                    <div class="text-[11px] text-slate-400">6 Conceptos Clave</div>
+                                </div>
+                                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5">
+                                    <div class="text-cyan-400 text-xs font-semibold uppercase tracking-wider">Análisis</div>
+                                    <div class="text-xl font-bold text-white mt-0.5">21 Dimensiones</div>
+                                    <div class="text-[11px] text-slate-400">Comparación Rigurosa</div>
+                                </div>
+                                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5">
+                                    <div class="text-emerald-400 text-xs font-semibold uppercase tracking-wider">Visualización</div>
+                                    <div class="text-xl font-bold text-white mt-0.5">3 Vistas</div>
+                                    <div class="text-[11px] text-slate-400">Matriz, Explorador y Síntesis</div>
+                                </div>
+                                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5">
+                                    <div class="text-amber-400 text-xs font-semibold uppercase tracking-wider">Sustento</div>
+                                    <div class="text-xl font-bold text-white mt-0.5">Referencias</div>
+                                    <div class="text-[11px] text-slate-400">Enlaces Verificados</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Prominent Author & Institutional Credential Card -->
+                        <div class="lg:col-span-5">
+                            <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 sm:p-7 shadow-2xl relative overflow-hidden">
+                                <div class="absolute -top-12 -right-12 w-36 h-36 bg-blue-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                                
+                                <!-- Institutional Header -->
+                                <div class="flex items-center gap-3.5 pb-5 mb-5 border-b border-white/15">
+                                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center text-white text-xl font-extrabold shadow-lg shrink-0">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-[11px] font-bold uppercase tracking-widest text-blue-300 block">Universidad de Los Andes</span>
+                                        <h2 class="text-sm sm:text-base font-extrabold text-white leading-snug">
+                                            Instituto de Investigaciones en Administración (IIA)
+                                        </h2>
+                                        <p class="text-xs text-slate-300 mt-0.5">Postgrado en Administración, Mención Gerencia</p>
+                                    </div>
+                                </div>
+
+                                <!-- Highlighted Author Info -->
+                                <div class="bg-slate-950/60 border border-blue-400/30 rounded-2xl p-4 mb-4">
+                                    <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-400 block mb-1">Autora de la Asignación</span>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-blue-600/30 border border-blue-400/40 text-blue-200 flex items-center justify-center font-bold text-base shrink-0">
+                                            <i class="fa-solid fa-user-graduate"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-base sm:text-lg font-extrabold text-white tracking-tight">
+                                                Lcda. Adriana C. Gonzalez I.
+                                            </div>
+                                            <div class="text-xs sm:text-sm font-semibold text-blue-300">
+                                                C.I. 15.756.922
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Academic Metadata Details -->
+                                <div class="space-y-2.5 text-xs sm:text-sm">
+                                    <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-white/5 border border-white/10">
+                                        <span class="text-slate-300 flex items-center gap-2">
+                                            <i class="fa-solid fa-book text-blue-400"></i> Unidad Curricular:
+                                        </span>
+                                        <span class="font-bold text-white text-right">Gerencia de Talento Humano</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-white/5 border border-white/10">
+                                        <span class="text-slate-300 flex items-center gap-2">
+                                            <i class="fa-solid fa-file-signature text-emerald-400"></i> Evaluación:
+                                        </span>
+                                        <span class="font-bold text-white text-right">Primera Asignación</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-white/5 border border-white/10">
+                                        <span class="text-slate-300 flex items-center gap-2">
+                                            <i class="fa-regular fa-calendar-check text-amber-400"></i> Fecha de publicación:
+                                        </span>
+                                        <span class="font-bold text-amber-300 text-right">15 de octubre de 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN PORTAL CARDS SECTION (THE TWO ATTRACTIVE BUTTONS/LINKS) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 pb-20 relative z-10">
+                <div class="flex items-center justify-between mb-6 bg-white/90 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-sm border border-slate-200/80">
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-compass"></i>
+                        </span>
+                        <div>
+                            <h2 class="text-sm sm:text-base font-bold text-slate-900">Seleccione el Cuadro Comparativo a Explorar</h2>
+                            <p class="text-xs text-slate-500">Haga clic en cualquiera de las dos tarjetas principales para abrir su entorno interactivo dedicado</p>
+                        </div>
+                    </div>
+                    <span class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-200">
+                        <i class="fa-solid fa-hand-pointer"></i> Navegación Interactiva
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- PORTAL CARD 1: RECURSO vs CAPITAL vs TALENTO -->
+                    <div onclick="navigateTo('cuadro1')" role="button" tabindex="0" onkeydown="if(event.key==='Enter') navigateTo('cuadro1')"
+                         class="portal-card group cursor-pointer rounded-3xl bg-white shadow-xl border border-slate-200/90 overflow-hidden flex flex-col justify-between text-left focus:outline-none focus:ring-4 focus:ring-blue-500/40">
+                        <div>
+                            <!-- Card Image Header -->
+                            <div class="relative h-64 sm:h-72 overflow-hidden bg-slate-900">
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
+                                     alt="Equipo Corporativo y Talento Humano" 
+                                     class="portal-bg-img w-full h-full object-cover opacity-80"
+                                     onerror="this.src='https://placehold.co/800x450/1e3a8a/ffffff?text=Recurso+Capital+Talento'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/55 to-transparent"></div>
+                                
+                                <!-- Top Badges -->
+                                <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
+                                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-600 text-white shadow-lg flex items-center gap-1.5">
+                                        <i class="fa-solid fa-layer-group"></i> Cuadro Comparativo I
+                                    </span>
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-900/80 text-blue-200 backdrop-blur-md border border-white/15">
+                                        10 Dimensiones · 15 Referencias
+                                    </span>
+                                </div>
+
+                                <!-- Bottom Overlay Title -->
+                                <div class="absolute bottom-4 left-6 right-6">
+                                    <p class="text-xs font-semibold uppercase tracking-widest text-blue-300 mb-1">Concepción de las Personas en la Organización</p>
+                                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                                        Recurso vs. Capital vs. Talento
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="p-6 sm:p-8">
+                                <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                                    Contraste exhaustivo entre la visión sistémico-funcional del trabajador como <strong>insumo productivo</strong>, la teoría económica del <strong>acervo intangible de inversión</strong> y el paradigma estratégico-antropocéntrico de <strong>competencias y potencial superior</strong>.
+                                </p>
+
+                                <!-- 3 Mini Concept Pills -->
+                                <div class="grid grid-cols-3 gap-2.5 mb-6">
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                                        <div class="flex items-center gap-1.5 text-slate-700 font-bold text-xs sm:text-sm mb-1">
+                                            <i class="fa-solid fa-gears text-slate-500"></i> Recurso
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 leading-snug">Factor productivo, normativo y estandarizado (Commons, Chiavenato).</p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-blue-50/70 border border-blue-200/80">
+                                        <div class="flex items-center gap-1.5 text-blue-900 font-bold text-xs sm:text-sm mb-1">
+                                            <i class="fa-solid fa-chart-line text-blue-600"></i> Capital
+                                        </div>
+                                        <p class="text-[11px] text-slate-600 leading-snug">Activo intangible, inversión en formación y ROI (Schultz, Becker).</p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-indigo-50/70 border border-indigo-200/80">
+                                        <div class="flex items-center gap-1.5 text-indigo-900 font-bold text-xs sm:text-sm mb-1">
+                                            <i class="fa-solid fa-gem text-indigo-600"></i> Talento
+                                        </div>
+                                        <p class="text-[11px] text-slate-600 leading-snug">Sinergia de competencias, potencial e innovación (McKinsey, Alles).</p>
+                                    </div>
+                                </div>
+
+                                <!-- Included Dimensions Preview -->
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Concepto</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Enfoque Administrativo</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Alcance e Importancia</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Tipologías (9-Box, Lepak & Snell)</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Autoría, Auge y Casos (IBM, GS, BBVA)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Action Footer Button -->
+                        <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-2">
+                            <div class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 group-hover:from-blue-600 group-hover:to-indigo-600 text-white font-bold text-sm sm:text-base flex items-center justify-between shadow-md transition-all">
+                                <span class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-table-columns"></i>
+                                    Explorar Cuadro Comparativo 1
+                                </span>
+                                <span class="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-1.5 transition-transform">
+                                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PORTAL CARD 2: ADMINISTRACIÓN vs GERENCIA vs GESTIÓN -->
+                    <div onclick="navigateTo('cuadro2')" role="button" tabindex="0" onkeydown="if(event.key==='Enter') navigateTo('cuadro2')"
+                         class="portal-card group cursor-pointer rounded-3xl bg-white shadow-xl border border-slate-200/90 overflow-hidden flex flex-col justify-between text-left focus:outline-none focus:ring-4 focus:ring-emerald-500/40">
+                        <div>
+                            <!-- Card Image Header -->
+                            <div class="relative h-64 sm:h-72 overflow-hidden bg-slate-900">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80" 
+                                     alt="Dirección Estratégica y Gestión Ejecutiva" 
+                                     class="portal-bg-img w-full h-full object-cover opacity-80"
+                                     onerror="this.src='https://placehold.co/800x450/064e3b/ffffff?text=Administracion+Gerencia+Gestion'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/55 to-transparent"></div>
+                                
+                                <!-- Top Badges -->
+                                <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
+                                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-600 text-white shadow-lg flex items-center gap-1.5">
+                                        <i class="fa-solid fa-sitemap"></i> Cuadro Comparativo II
+                                    </span>
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-900/80 text-emerald-200 backdrop-blur-md border border-white/15">
+                                        11 Dimensiones · 15 Referencias
+                                    </span>
+                                </div>
+
+                                <!-- Bottom Overlay Title -->
+                                <div class="absolute bottom-4 left-6 right-6">
+                                    <p class="text-xs font-semibold uppercase tracking-widest text-emerald-300 mb-1">Praxis Organizacional y Conducción del Personal</p>
+                                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                                        Administración vs. Gerencia vs. Gestión
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="p-6 sm:p-8">
+                                <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                                    Delimitación epistemológica y práctica entre el diseño estructural-normativo de la <strong>administración</strong>, la conducción estratégica y decisoria de la <strong>gerencia</strong> y la acción dinámica, transversal y transformadora de la <strong>gestión</strong>.
+                                </p>
+
+                                <!-- 3 Mini Concept Pills -->
+                                <div class="grid grid-cols-3 gap-2.5 mb-6">
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                                        <div class="flex items-center gap-1.5 text-slate-700 font-bold text-xs sm:text-sm mb-1">
+                                            <i class="fa-solid fa-building-columns text-slate-500"></i> Administración
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 leading-snug">Estructura formal, normas, planeación y control (Taylor, Fayol, Koontz).</p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200/80">
+                                        <div class="flex items-center gap-1.5 text-amber-900 font-bold text-xs sm:text-sm mb-1">
+                                            <i class="fa-solid fa-chess-king text-amber-600"></i> Gerencia
+                                        </div>
+                                        <p class="text-[11px] text-slate-600 leading-snug">Liderazgo directivo, estrategia y decisiones críticas (Drucker, Mintzberg).</p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+                                        <div class="flex items-center gap-1.5 text-emerald-900 font-bold text-xs sm:text-sm mb-1">
+                                            <i class="fa-solid fa-diagram-project text-emerald-600"></i> Gestión
+                                        </div>
+                                        <p class="text-[11px] text-slate-600 leading-snug">Acción transversal, procesos y movilización humana (Sanabria, Alles).</p>
+                                    </div>
+                                </div>
+
+                                <!-- Included Dimensions Preview -->
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Concepto</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Vinculación con Personal</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Enfoque y Rol del Responsable</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Fases, Roles de Mintzberg y Despliegue</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Tradición Anglosajona vs. Francófona</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Action Footer Button -->
+                        <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-2">
+                            <div class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-slate-900 via-teal-900 to-emerald-900 group-hover:from-emerald-600 group-hover:to-teal-600 text-white font-bold text-sm sm:text-base flex items-center justify-between shadow-md transition-all">
+                                <span class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-network-wired"></i>
+                                    Explorar Cuadro Comparativo 2
+                                </span>
+                                <span class="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-1.5 transition-transform">
+                                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Synthesis Matrix Bridge (How Table 1 and Table 2 connect) -->
+                <div class="mt-12 bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/90">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Articulación Teórico-Práctica · Gerencia de Talento Humano</span>
+                            <h3 class="text-xl font-bold text-slate-900 mt-1">Sinergia Epistemológica entre Ambos Cuadros Comparativos</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-500 max-w-md">
+                            Correspondencia predominante entre la forma de concebir al ser humano (Cuadro I) y el modelo de conducción organizacional (Cuadro II).
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+                            <div class="w-11 h-11 rounded-xl bg-slate-800 text-white flex items-center justify-center shrink-0 font-bold">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Eje Normativo-Funcional</div>
+                                <h4 class="text-sm font-bold text-slate-900 mt-0.5">Administración de Recursos Humanos (ARH)</h4>
+                                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                    Los <strong>recursos</strong> como insumos regulados por contratos y presupuestos requieren ser <strong>administrados</strong> mediante planificación, organización y control formal.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-blue-50/60 border border-blue-200/70">
+                            <div class="w-11 h-11 rounded-xl bg-blue-700 text-white flex items-center justify-center shrink-0 font-bold">
+                                <i class="fa-solid fa-sack-dollar"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-blue-700">Eje Directivo-Estratégico</div>
+                                <h4 class="text-sm font-bold text-slate-900 mt-0.5">Gerencia del Capital / Talento Humano (HCM)</h4>
+                                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                    El gobierno del <strong>capital humano</strong> y las decisiones de inversión de alto nivel demandan <strong>gerencia</strong> ejecutiva, liderazgo estratégico y autoridad formal.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/70">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0 font-bold">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-emerald-700">Eje Dinámico-Transformacional</div>
+                                <h4 class="text-sm font-bold text-slate-900 mt-0.5">Gestión del Talento Humano (GTH)</h4>
+                                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                    El <strong>talento humano</strong> (saber, saber hacer, saber analizar y hacer que ocurra) se dinamiza mediante una <strong>gestión</strong> transversal de procesos, cultura y competencias.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             VIEW 2 & VIEW 3: DYNAMIC COMPARATIVE WORKSPACE (CUADRO 1 & CUADRO 2)
+             ===================================================================== -->
+        <section id="view-table-workspace" class="hidden view-fade">
+            <!-- Dynamic Hero Header for Active Table -->
+            <div id="table-hero" class="relative bg-slate-900 text-white overflow-hidden">
+                <div class="absolute inset-0">
+                    <img id="table-hero-img" src="" alt="Fondo Corporativo" class="w-full h-full object-cover opacity-30"
+                         onerror="this.src='https://placehold.co/1920x600/0f172a/ffffff?text=Cuadro+Comparativo'">
+                    <div id="table-hero-overlay" class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-blue-950/80"></div>
+                </div>
+
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+                    <!-- Top Breadcrumb & Back to Home -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                        <div class="flex items-center gap-2 text-xs sm:text-sm text-slate-300">
+                            <button onclick="navigateTo('home')" class="hover:text-white flex items-center gap-1.5 font-medium bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors">
+                                <i class="fa-solid fa-arrow-left"></i> Volver a la Portada
+                            </button>
+                            <span class="text-slate-500">/</span>
+                            <span id="table-badge-crumb" class="text-blue-300 font-semibold">Cuadro Comparativo</span>
+                        </div>
+
+                        <button id="table-switch-other" onclick="" class="text-xs sm:text-sm font-medium text-white bg-white/10 hover:bg-white/20 border border-white/15 px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2">
+                            <span>Ir al otro cuadro comparativo</span>
+                            <i class="fa-solid fa-arrow-right-arrow-left text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Title & Subtitle -->
+                    <div class="max-w-4xl">
+                        <span id="table-kicker" class="inline-block text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Módulo de Análisis Comparativo</span>
+                        <h1 id="table-main-title" class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3"></h1>
+                        <p id="table-main-desc" class="text-sm sm:text-base text-slate-300 leading-relaxed"></p>
+                    </div>
+
+                    <!-- 3 Concept Header Summary Cards -->
+                    <div id="table-concept-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8"></div>
+                </div>
+            </div>
+
+            <!-- Interactive Control Bar (Sticky Subheader) -->
+            <div class="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm no-print">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+                    <!-- View Mode Switcher (Order: 1. Matriz Completa [Default], 2. Explorador Visual, 3. Línea de Tiempo) -->
+                    <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200/80 overflow-x-auto">
+                        <button id="mode-btn-matrix" onclick="setDisplayMode('matrix')"
+                                class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-slate-900 text-white shadow-sm">
+                            <i class="fa-solid fa-table text-blue-400"></i>
+                            <span>Matriz Comparativa Completa</span>
+                        </button>
+                        <button id="mode-btn-explorer" onclick="setDisplayMode('explorer')"
+                                class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-slate-900">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Explorador Visual por Dimensión</span>
+                        </button>
+                        <button id="mode-btn-timeline" onclick="setDisplayMode('timeline')"
+                                class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-slate-900">
+                            <i class="fa-solid fa-timeline"></i>
+                            <span>Línea de Tiempo y Síntesis</span>
+                        </button>
+                    </div>
+
+                    <!-- Filter Columns & Live Search -->
+                    <div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5">
+                        <!-- Column Spotlight Filter -->
+                        <div class="flex items-center gap-1 bg-slate-100 px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs">
+                            <span class="text-slate-500 font-medium mr-1 hidden xl:inline">Enfocar:</span>
+                            <button id="col-filter-all" onclick="setColumnSpotlight('all')" class="px-2 py-1 rounded-md font-bold bg-white text-slate-900 shadow-sm">Todos (3)</button>
+                            <button id="col-filter-0" onclick="setColumnSpotlight(0)" class="px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900"></button>
+                            <button id="col-filter-1" onclick="setColumnSpotlight(1)" class="px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900"></button>
+                            <button id="col-filter-2" onclick="setColumnSpotlight(2)" class="px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900"></button>
+                        </div>
+
+                        <!-- Search Input -->
+                        <div class="relative flex-grow sm:w-64">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input id="table-search-input" type="text" oninput="handleSearchInput(this.value)"
+                                   placeholder="Buscar autor, concepto, dimensión..."
+                                   class="w-full pl-8 pr-8 py-2 rounded-xl bg-slate-100 border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500">
+                            <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN DYNAMIC CONTENT AREA -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+                <!-- MODE 1 (DEFAULT): MATRIZ COMPARATIVA COMPLETA (FULL EXECUTIVE TABLE) -->
+                <div id="container-mode-matrix" class="space-y-6">
+                    <div class="bg-white rounded-3xl shadow-lg border border-slate-200/90 overflow-hidden">
+                        <div class="p-5 sm:p-6 bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div>
+                                <span class="text-xs uppercase tracking-widest text-blue-400 font-bold">Vista Consolidada Lado a Lado</span>
+                                <h3 id="matrix-view-title" class="text-lg sm:text-xl font-bold mt-0.5">Matriz Comparativa Integral</h3>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-300">
+                                <i class="fa-solid fa-circle-info text-blue-400"></i>
+                                <span>Contiene el 100% del contenido académico y elementos visuales por dimensión</span>
+                            </div>
+                        </div>
+
+                        <div id="matrix-rows-container" class="divide-y divide-slate-200"></div>
+                    </div>
+                </div>
+
+                <!-- MODE 2: EXPLORADOR VISUAL INTERACTIVO POR DIMENSIÓN -->
+                <div id="container-mode-explorer" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    <!-- Left Sidebar: Interactive Dimension Selector -->
+                    <aside class="lg:col-span-4 xl:col-span-3 bg-white rounded-3xl shadow-md border border-slate-200/90 p-4 lg:sticky lg:top-36">
+                        <div class="flex items-center justify-between px-2 pb-3 mb-3 border-b border-slate-100">
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-blue-600 block">Navegador Dimensional</span>
+                                <h3 class="text-sm font-bold text-slate-900">Dimensiones Comparativas</h3>
+                            </div>
+                            <span id="dim-counter-badge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">1 / 10</span>
+                        </div>
+
+                        <!-- Dimension Buttons List -->
+                        <div id="dimension-nav-list" class="space-y-1.5 max-h-[60vh] overflow-y-auto pr-1"></div>
+
+                        <!-- Keyboard navigation tip -->
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 px-2">
+                            <span><i class="fa-regular fa-keyboard mr-1"></i> Use flechas ◀ ▶</span>
+                            <button onclick="setDisplayMode('matrix')" class="text-blue-600 hover:underline font-semibold">Ver matriz completa</button>
+                        </div>
+                    </aside>
+
+                    <!-- Right Stage: Visual Dimension Spotlight & 3-Column Interactive Comparison -->
+                    <div class="lg:col-span-8 xl:col-span-9 space-y-6">
+                        <!-- Dimension Visual Header Card with Corporate Stock Background -->
+                        <div id="explorer-stage-card" class="bg-white rounded-3xl shadow-lg border border-slate-200/90 overflow-hidden"></div>
+                    </div>
+                </div>
+
+                <!-- MODE 3: LÍNEA DE TIEMPO Y SÍNTESIS VISUAL -->
+                <div id="container-mode-timeline" class="hidden space-y-8">
+                    <div id="timeline-synthesis-container"></div>
+                </div>
+
+                <!-- =====================================================================
+                     REFERENCIAS BIBLIOGRÁFICAS (APA 7) SECTION
+                     ===================================================================== -->
+                <div id="references-section" class="mt-14 bg-white rounded-3xl shadow-md border border-slate-200/90 overflow-hidden scroll-mt-36">
+                    <div class="p-6 sm:p-8 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-400/30 text-amber-300 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-book-open-reader"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Sustento Documental y Académico</span>
+                                <h2 class="text-xl sm:text-2xl font-extrabold text-white">Referencias Bibliográficas</h2>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="refs-count-badge" class="px-3 py-1.5 rounded-xl bg-white/10 text-xs font-semibold text-slate-200 border border-white/15">
+                                15 Fuentes Académicas
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 sm:p-8">
+                        <div id="references-list-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                    </div>
+                </div>
+
+                <!-- Bottom Quick Switch Footer inside Table View -->
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-900 text-white p-6 rounded-3xl shadow-lg no-print">
+                    <div class="flex items-center gap-3">
+                        <button onclick="navigateTo('home')" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-sm font-semibold transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-house"></i> Volver a la Portada
+                        </button>
+                    </div>
+                    <button id="bottom-switch-table-btn" onclick="" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all flex items-center gap-2 shadow-md">
+                        <span>Continuar al Siguiente Cuadro Comparativo</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TOAST NOTIFICATION FOR COPIED CITATIONS -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl border border-slate-700 flex items-center gap-3 text-xs sm:text-sm font-medium">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toast-message">Referencia copiada al portapapeles</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800/80 py-8 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4 text-xs">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+                <div class="flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center font-bold text-sm shrink-0">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </span>
+                    <div>
+                        <div class="text-white font-bold text-xs sm:text-sm">
+                            Primera Asignación · Unidad Curricular: "Gerencia de Talento Humano"
+                        </div>
+                        <div class="text-slate-400 text-[11px] sm:text-xs">
+                            Postgrado en Administración, Mención Gerencia · Instituto de Investigaciones en Administración (IIA) · Universidad de Los Andes
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 bg-slate-900 px-4 py-2.5 rounded-xl border border-slate-800">
+                    <span class="text-white font-bold"><i class="fa-solid fa-feather-pointed text-blue-400 mr-1.5"></i>Autora: Lcda. Adriana C. Gonzalez I., C.I. 15.756.922</span>
+                    <span class="text-slate-600">|</span>
+                    <span class="text-amber-300 font-semibold"><i class="fa-regular fa-calendar mr-1"></i>15 de octubre de 2026</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span class="text-slate-500">Universidad de Los Andes (ULA) · Mérida, Venezuela</span>
+                <div class="flex items-center gap-4">
+                    <button onclick="navigateTo('home')" class="hover:text-white transition-colors">Portada Principal</button>
+                    <span>·</span>
+                    <button onclick="navigateTo('cuadro1')" class="hover:text-white transition-colors">Cuadro 1 (Recurso, Capital, Talento)</button>
+                    <span>·</span>
+                    <button onclick="navigateTo('cuadro2')" class="hover:text-white transition-colors">Cuadro 2 (Administración, Gerencia, Gestión)</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ============================================================================
+           CORPORATE & INSTITUTIONAL SVG LOGOS FOR ORGANIZATIONAL EXAMPLES
+           ============================================================================ */
+        const ORG_LOGOS = {
+            ibm: `<svg viewBox="0 0 100 40" class="w-14 h-9 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="40" rx="8" fill="#0530AD"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="21" letter-spacing="2">IBM</text>
+                    <line x1="12" y1="13" x2="88" y2="13" stroke="#0530AD" stroke-width="1.4"/>
+                    <line x1="12" y1="19" x2="88" y2="19" stroke="#0530AD" stroke-width="1.4"/>
+                    <line x1="12" y1="25" x2="88" y2="25" stroke="#0530AD" stroke-width="1.4"/>
+                  </svg>`,
+            ge: `<svg viewBox="0 0 48 48" class="w-11 h-11 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="22" fill="#0870D8" stroke="#E0F2FE" stroke-width="2"/>
+                    <circle cx="24" cy="24" r="18" stroke="#FFFFFF" stroke-width="1.2" stroke-dasharray="3 2"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="18">GE</text>
+                 </svg>`,
+            gs: `<svg viewBox="0 0 110 42" class="w-16 h-10 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="110" height="42" rx="8" fill="#7399C6"/>
+                    <text x="10" y="19" fill="#FFFFFF" font-family="Georgia, serif" font-weight="700" font-size="12">Goldman</text>
+                    <text x="10" y="33" fill="#FFFFFF" font-family="Georgia, serif" font-weight="700" font-size="12">Sachs</text>
+                 </svg>`,
+            deloitte: `<svg viewBox="0 0 115 40" class="w-16 h-10 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="115" height="40" rx="8" fill="#000000"/>
+                    <text x="12" y="25" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="17">Deloitte</text>
+                    <circle cx="98" cy="22" r="4" fill="#86BC25"/>
+                 </svg>`,
+            bbva: `<svg viewBox="0 0 105 40" class="w-16 h-10 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="105" height="40" rx="8" fill="#072146"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="19" letter-spacing="1.5">BBVA</text>
+                 </svg>`,
+            cjf: `<svg viewBox="0 0 105 42" class="w-16 h-10 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="105" height="42" rx="8" fill="#1E293B"/>
+                    <text x="50%" y="42%" dominant-baseline="middle" text-anchor="middle" fill="#F8FAFC" font-family="Georgia, serif" font-weight="800" font-size="14" letter-spacing="1">CJF</text>
+                    <text x="50%" y="74%" dominant-baseline="middle" text-anchor="middle" fill="#94A3B8" font-family="Inter, sans-serif" font-weight="600" font-size="7.5" letter-spacing="0.8">SECTOR PÚBLICO</text>
+                 </svg>`,
+            industrial: `<svg viewBox="0 0 48 48" class="w-11 h-11 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="48" height="48" rx="10" fill="#334155"/>
+                    <path d="M10 36V22L19 27V22L28 27V14H38V36H10Z" fill="#E2E8F0"/>
+                 </svg>`,
+            latam: `<svg viewBox="0 0 105 42" class="w-16 h-10 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="105" height="42" rx="8" fill="#78350F"/>
+                    <text x="50%" y="42%" dominant-baseline="middle" text-anchor="middle" fill="#FEF3C7" font-family="Inter, sans-serif" font-weight="800" font-size="12" letter-spacing="1">LATAM</text>
+                    <text x="50%" y="74%" dominant-baseline="middle" text-anchor="middle" fill="#FDE68A" font-family="Inter, sans-serif" font-weight="600" font-size="7.5" letter-spacing="0.6">GRUPOS CORP.</text>
+                 </svg>`
+        };
+
+        /* ============================================================================
+           COMPLETE ACADEMIC DATASETS (100% FIDELITY TO SOURCE CONTENT & REFERENCES)
+           ============================================================================ */
+
+        const DATA_CUADRO_1 = {
+            id: 'cuadro1',
+            kicker: 'Cuadro Comparativo I · Evolución Conceptual del Factor Humano',
+            title: 'Recurso vs. Capital vs. Talento',
+            subtitle: 'Análisis multidimensional de las tres grandes concepciones sobre las personas en las organizaciones: desde el paradigma sistémico-productivo hasta el enfoque económico de inversión y la sinergia estratégica de competencias.',
+            heroImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80',
+            otherTableId: 'cuadro2',
+            otherTableName: 'Ir al Cuadro 2: Administración · Gerencia · Gestión',
+            concepts: [
+                {
+                    key: 'recurso',
+                    name: 'Recurso',
+                    fullLabel: 'Recurso Humano',
+                    badge: 'Paradigma Sistémico-Funcional',
+                    icon: 'fa-solid fa-gears',
+                    accentColor: 'slate',
+                    headerBg: 'from-slate-800 to-slate-900',
+                    softBg: 'bg-slate-50',
+                    borderCol: 'border-slate-300',
+                    badgeClass: 'bg-slate-200 text-slate-800',
+                    shortMeta: 'Insumo productivo administrado mediante políticas estandarizadas (Commons, 1893; Chiavenato, 2009; Dessler, 2019).'
+                },
+                {
+                    key: 'capital',
+                    name: 'Capital',
+                    fullLabel: 'Capital Humano',
+                    badge: 'Paradigma Económico-Financiero',
+                    icon: 'fa-solid fa-chart-line',
+                    accentColor: 'blue',
+                    headerBg: 'from-blue-700 to-blue-900',
+                    softBg: 'bg-blue-50/50',
+                    borderCol: 'border-blue-300',
+                    badgeClass: 'bg-blue-100 text-blue-800',
+                    shortMeta: 'Acervo intangible de conocimientos, habilidades y salud cuyo valor impulsa la productividad y el ROI (Schultz, 1961; Becker, 1964).'
+                },
+                {
+                    key: 'talento',
+                    name: 'Talento',
+                    fullLabel: 'Talento Humano',
+                    badge: 'Paradigma Estratégico-Antropocéntrico',
+                    icon: 'fa-solid fa-gem',
+                    accentColor: 'indigo',
+                    headerBg: 'from-indigo-700 to-violet-900',
+                    softBg: 'bg-indigo-50/50',
+                    borderCol: 'border-indigo-300',
+                    badgeClass: 'bg-indigo-100 text-indigo-800',
+                    shortMeta: 'Conjunción sinérgica de saber, saber hacer, saber analizar y saber hacer que ocurra (Michaels et al., 2001; Alles, 2005; Chiavenato, 2009).'
+                }
+            ],
+            dimensions: [
+                {
+                    id: 'c1-dim-1',
+                    number: '01',
+                    name: 'Concepto',
+                    icon: 'fa-solid fa-lightbulb',
+                    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Definición epistemológica y naturaleza constitutiva en la organización',
+                    visualWidgetType: 'pillars',
+                    visualNotes: [
+                        'Factor o recurso productivo estandarizado',
+                        'Acervo intangible económico e intelectual',
+                        'Sinergia de 4 saberes y desempeño superior'
+                    ],
+                    values: [
+                        {
+                            text: 'Conjunto de personas que integran una organización y son administradas como uno de los factores o recursos productivos —junto con los recursos físicos, financieros, tecnológicos y mercadológicos— mediante políticas y prácticas estandarizadas para el logro de los objetivos corporativos (Chiavenato, 2009; Dessler, 2019).',
+                            highlightTag: 'Factor Productivo Organizacional',
+                            visualIcon: 'fa-solid fa-boxes-stacked'
+                        },
+                        {
+                            text: 'Acervo intangible de conocimientos, habilidades, competencias, experiencias y condiciones de salud incorporados en los individuos, cuyo valor económico e intelectual impulsa la productividad, la innovación y la generación de riqueza organizacional (Becker, 1964; Organización para la Cooperación y el Desarrollo Económicos [OCDE], 2001; Schultz, 1961).',
+                            highlightTag: 'Acervo Intangible y Riqueza',
+                            visualIcon: 'fa-solid fa-coins'
+                        },
+                        {
+                            text: 'Conjunción sinérgica de conocimientos (saber), habilidades (saber hacer), juicio (saber analizar) y actitudes o compromisos (saber hacer que ocurra) presentes en las personas, orientados al potencial de desarrollo y al desempeño superior dentro de la organización (Alles, 2005; Chiavenato, 2009).',
+                            highlightTag: 'Sinergia: Saber · Hacer · Analizar · Lograr',
+                            visualIcon: 'fa-solid fa-sparkles'
+                        }
+                    ]
+                },
+                {
+                    id: 'c1-dim-2',
+                    number: '02',
+                    name: 'Enfoque administrativo y concepción del trabajador',
+                    icon: 'fa-solid fa-user-tie',
+                    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Paradigma rector y estatus ontológico otorgado a la persona que trabaja',
+                    visualWidgetType: 'paradigm',
+                    visualNotes: [
+                        'Insumo planificado y controlado (Minimizar costos)',
+                        'Portador de activos intelectuales (Productividad marginal)',
+                        'Socio estratégico autónomo y creativo (Innovación)'
+                    ],
+                    values: [
+                        {
+                            text: 'Paradigma sistémico-funcional centrado en los puestos y funciones; el trabajador es concebido como un recurso productivo o insumo organizacional que debe ser planificado, dirigido, evaluado y controlado para maximizar el rendimiento operativo y minimizar costos (Chiavenato, 2009; Kaufman, 2014).',
+                            highlightTag: 'Trabajador como Insumo Productivo',
+                            visualIcon: 'fa-solid fa-sliders'
+                        },
+                        {
+                            text: 'Paradigma económico-financiero centrado en la valoración de intangibles; el trabajador es concebido como un portador de activos intelectuales cuyo valor se incrementa mediante la inversión en educación, capacitación y salud, reflejándose en su productividad marginal (Becker, 1964; Schultz, 1961).',
+                            highlightTag: 'Portador de Activos Intelectuales',
+                            visualIcon: 'fa-solid fa-graduation-cap'
+                        },
+                        {
+                            text: 'Paradigma estratégico y antropocéntrico basado en competencias y potencial; el trabajador es concebido como un socio estratégico y agente activo dotado de inteligencia, autonomía, creatividad y capacidad de innovación (Alles, 2005; Chiavenato, 2009).',
+                            highlightTag: 'Socio Estratégico y Agente Activo',
+                            visualIcon: 'fa-solid fa-handshake-angle'
+                        }
+                    ]
+                },
+                {
+                    id: 'c1-dim-3',
+                    number: '03',
+                    name: 'Alcance',
+                    icon: 'fa-solid fa-compass-drafting',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Horizonte temporal y procesos organizacionales comprendidos',
+                    visualWidgetType: 'scope-meter',
+                    visualNotes: [
+                        'Operativo, táctico y normativo (Totalidad de nómina)',
+                        'Económico-estratégico (Mediano y largo plazo / ROI)',
+                        'Estratégico y transformacional (Largo plazo / Sucesión)'
+                    ],
+                    values: [
+                        {
+                            text: 'Operativo, táctico y normativo sobre la totalidad de la nómina. Abarca el análisis y descripción de puestos, reclutamiento, selección, contratación legal, administración de sueldos y salarios, relaciones laborales o sindicales, seguridad e higiene industrial y control disciplinario (Chiavenato, 2009; Dessler, 2019).',
+                            highlightTag: 'Operativo, Táctico y Normativo',
+                            meterLevel: 45,
+                            horizon: 'Corto y Mediano Plazo',
+                            visualIcon: 'fa-solid fa-file-contract'
+                        },
+                        {
+                            text: 'Económico-estratégico de mediano y largo plazo. Abarca los procesos de inversión en formación, capacitación en el puesto, transferencia de conocimiento, arquitectura de asignación del capital intelectual y medición del retorno sobre la inversión (ROI) en el personal (Becker, 1964; Lepak & Snell, 1999).',
+                            highlightTag: 'Económico-Estratégico (ROI)',
+                            meterLevel: 75,
+                            horizon: 'Mediano y Largo Plazo',
+                            visualIcon: 'fa-solid fa-chart-pie'
+                        },
+                        {
+                            text: 'Estratégico y transformacional de largo plazo. Abarca la gestión por competencias, identificación de puestos críticos, mapas de sucesión, atracción y fidelización, marca empleadora, cultura corporativa, desarrollo de liderazgo y aprendizaje continuo (Alles, 2005; Deloitte, 2026; Michaels et al., 2001).',
+                            highlightTag: 'Estratégico y Transformacional',
+                            meterLevel: 100,
+                            horizon: 'Largo Plazo Sostenible',
+                            visualIcon: 'fa-solid fa-rocket'
+                        }
+                    ]
+                },
+                {
+                    id: 'c1-dim-4',
+                    number: '04',
+                    name: 'Importancia',
+                    icon: 'fa-solid fa-award',
+                    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Contribución crítica al valor, estabilidad y competitividad corporativa',
+                    visualWidgetType: 'impact',
+                    visualNotes: [
+                        'Eficiencia operativa, paz sindical y control de costos',
+                        'Crecimiento económico y retornos superiores al capital físico',
+                        'Ventaja competitiva sostenible, agilidad y liderazgo'
+                    ],
+                    values: [
+                        {
+                            text: 'Garantía de eficiencia operativa, cumplimiento de la legislación laboral, estandarización de procesos administrativos, paz sindical y previsibilidad en el control de costos de la plantilla (Chiavenato, 2009; Dessler, 2019).',
+                            highlightTag: 'Eficiencia Operativa y Cumplimiento Legal',
+                            visualIcon: 'fa-solid fa-scale-balanced'
+                        },
+                        {
+                            text: 'Explicación y potenciación del crecimiento económico, la productividad marginal y el valor de mercado de la empresa, demostrando que la inversión en formación y salud rinde retornos superiores a los del capital físico (Becker, 1964; Schultz, 1961).',
+                            highlightTag: 'Productividad Marginal y Valor de Mercado',
+                            visualIcon: 'fa-solid fa-arrow-trend-up'
+                        },
+                        {
+                            text: 'Generación de ventaja competitiva sostenible e inimitable en entornos de transformación tecnológica, asegurando agilidad organizacional, innovación continua y continuidad del liderazgo en puestos críticos (Alles, 2005; Deloitte, 2026; Michaels et al., 2001).',
+                            highlightTag: 'Ventaja Competitiva Sostenible e Inimitable',
+                            visualIcon: 'fa-solid fa-trophy'
+                        }
+                    ]
+                },
+                {
+                    id: 'c1-dim-5',
+                    number: '05',
+                    name: 'Tipos',
+                    icon: 'fa-solid fa-sitemap',
+                    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Taxonomías y modelos de clasificación académica y empresarial',
+                    visualWidgetType: 'typology',
+                    visualNotes: [
+                        'Jerarquía, naturaleza funcional y tipo de vinculación',
+                        'Arquitectura de Lepak & Snell, conocimiento (Becker) y OCDE',
+                        'Matriz 9-Box, competencias dominantes y movilidad laboral'
+                    ],
+                    values: [
+                        {
+                            highlightTag: '3 Criterios de Clasificación de Recursos',
+                            visualIcon: 'fa-solid fa-layer-group',
+                            groups: [
+                                {
+                                    title: '1. Según su nivel jerárquico y toma de decisiones (Chiavenato, 2009; Dessler, 2019):',
+                                    items: [
+                                        '<strong>Alta dirección:</strong> Socios, directores ejecutivos (CEO) y presidentes encargados de definir la estrategia global y los objetivos de largo plazo.',
+                                        '<strong>Mandos medios:</strong> Gerentes de departamento, jefes de área y supervisores que articulan y traducen la estrategia en planes de acción.',
+                                        '<strong>Personal operativo:</strong> Empleados que ejecutan directamente las tareas diarias de base (operarios, ventas, administrativos, atención al cliente).'
+                                    ]
+                                },
+                                {
+                                    title: '2. Según la naturaleza de sus funciones (Chiavenato, 2009; Dessler, 2019):',
+                                    items: [
+                                        '<strong>Personal de línea (Core Business):</strong> Trabajadores directamente involucrados en la producción del bien o servicio principal.',
+                                        '<strong>Personal de staff (Soporte):</strong> Equipos de apoyo y asesoría indispensables para el funcionamiento (Contabilidad, Legal, Limpieza, RR. HH.).'
+                                    ]
+                                },
+                                {
+                                    title: '3. Según su tipo de vinculación o contratación (Dessler, 2019; Lepak & Snell, 1999):',
+                                    items: [
+                                        '<strong>Personal permanente o fijo:</strong> Empleados con contrato indefinido en la estructura interna.',
+                                        '<strong>Personal temporal o estacional:</strong> Contratados para picos de producción, campañas o suplencias.',
+                                        '<strong>Personal externo u outsourcing:</strong> Profesionales independientes, consultores o agencias contratadas por proyectos fuera de la nómina fija.'
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            highlightTag: '3 Modelos de Clasificación del Capital Humano',
+                            visualIcon: 'fa-solid fa-cubes',
+                            groups: [
+                                {
+                                    title: '1. Según el Modelo de Arquitectura de Recursos Humanos (Lepak & Snell, 1999):',
+                                    items: [
+                                        '<strong>Capital humano núcleo (Core):</strong> Alta singularidad y alto valor estratégico; sustenta la ventaja competitiva de la firma.',
+                                        '<strong>Capital humano comprometido (Idiosincrásico):</strong> Alta singularidad pero valor estratégico focalizado en procesos internos específicos.',
+                                        '<strong>Capital humano tradicional:</strong> Baja singularidad y alto valor; competencias valiosas pero disponibles en el mercado laboral.',
+                                        '<strong>Capital humano de alianza o externo:</strong> Bajo valor estratégico y baja singularidad; tareas operativas o de soporte externalizables.'
+                                    ]
+                                },
+                                {
+                                    title: '2. Según el tipo de conocimiento (Clasificación económica) (Becker, 1964):',
+                                    items: [
+                                        '<strong>Capital humano general:</strong> Conocimientos y habilidades transferibles y útiles en cualquier empresa o sector.',
+                                        '<strong>Capital humano específico:</strong> Conocimientos que solo tienen valor productivo dentro de una empresa particular (procesos, cultura o tecnología propia).'
+                                    ]
+                                },
+                                {
+                                    title: '3. Según su naturaleza o componentes (Becker, 1964; OCDE, 2001):',
+                                    items: [
+                                        '<strong>Capital intelectual o cognitivo:</strong> Títulos, certificaciones, experiencia y resolución de problemas.',
+                                        '<strong>Capital social o relacional:</strong> Trabajo en equipo, redes de contactos, liderazgo y negociación.',
+                                        '<strong>Capital emocional o psicológico:</strong> Resiliencia, motivación intrínseca, inteligencia emocional y adaptabilidad.',
+                                        '<strong>Capital de salud:</strong> Energía física y bienestar mental que determinan la productividad.'
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            highlightTag: '3 Enfoques de Segmentación del Talento',
+                            visualIcon: 'fa-solid fa-table-cells',
+                            groups: [
+                                {
+                                    title: '1. Según la Matriz de Potencial y Desempeño (Matriz 9-Box) (Deloitte, 2026; Michaels et al., 2001):',
+                                    items: [
+                                        '<strong>Alto potencial (HiPo - High Potential):</strong> Alto desempeño actual combinado con capacidad cognitiva, ambición y resiliencia para asumir roles futuros de liderazgo o alta complejidad.',
+                                        '<strong>Profesionales clave (Core Talent):</strong> Desempeño excelente o sólido con potencial de ascenso moderado; dan estabilidad y dominio técnico a la operación.',
+                                        '<strong>Talento de enfoque o bajo rendimiento:</strong> Desempeño o potencial por debajo de lo esperado; requiere capacitación, reubicación o seguimiento.'
+                                    ]
+                                },
+                                {
+                                    title: '2. Según el tipo de talento dominante (Enfoque de competencias) (Alles, 2005; Chiavenato, 2009):',
+                                    items: [
+                                        '<strong>Talento directivo o de liderazgo:</strong> Coordinación de equipos, decisión bajo presión, delegación y motivación.',
+                                        '<strong>Talento innovador o creativo:</strong> Resolución disruptiva de problemas, diseño de productos y optimización.',
+                                        '<strong>Talento técnico o especialista:</strong> Dominio profundo y experto en una materia o tecnología.',
+                                        '<strong>Talento comercial o relacional:</strong> Empatía, persuasión, negociación, ventas y fidelización de clientes.',
+                                        '<strong>Talento operativo o de ejecución:</strong> Orientación al detalle, disciplina y eficiencia en tareas sistemáticas.'
+                                    ]
+                                },
+                                {
+                                    title: '3. Según su disponibilidad o movilidad (Reclutamiento) (Dessler, 2019; Michaels et al., 2001):',
+                                    items: [
+                                        '<strong>Talento activo:</strong> Profesionales en búsqueda activa de empleo en el mercado.',
+                                        '<strong>Talento pasivo:</strong> Profesionales calificados conformes en su puesto actual, captados mediante estrategias de headhunting.'
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 'c1-dim-6',
+                    number: '06',
+                    name: 'Autoría y origen conceptual',
+                    icon: 'fa-solid fa-feather-pointed',
+                    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Pioneros teóricos, obras fundacionales y sistematización académica',
+                    visualWidgetType: 'authors',
+                    visualNotes: [
+                        'John R. Commons (1893) · Drucker, Bakke y Miles',
+                        'Theodore W. Schultz (1961) y Gary S. Becker (1964) · Lepak & Snell (1999)',
+                        'McKinsey & Co. (1998; Michaels et al., 2001) · Chiavenato (2009) y Alles (2005)'
+                    ],
+                    values: [
+                        {
+                            text: 'Término acuñado por el economista institucionalista John R. Commons en The Distribution of Wealth (Commons, 1893), y formalizado en la administración empresarial de mediados del siglo XX por Peter F. Drucker, E. Wight Bakke y Raymond E. Miles (Kaufman, 2014).',
+                            highlightTag: 'Commons (1893) · Drucker, Bakke & Miles',
+                            yearBadge: '1893 / Med. Siglo XX',
+                            visualIcon: 'fa-solid fa-book-journal-whills'
+                        },
+                        {
+                            text: 'Término y teoría económica desarrollados por Theodore W. Schultz (1961) y Gary S. Becker (1964), y articulados en la arquitectura estratégica de empresas por David P. Lepak y Scott A. Snell (1999).',
+                            highlightTag: 'Schultz (1961) · Becker (1964) · Lepak & Snell (1999)',
+                            yearBadge: '1961 – 1964 / 1999',
+                            visualIcon: 'fa-solid fa-building-columns'
+                        },
+                        {
+                            text: 'Concepto empresarial acuñado por los consultores de McKinsey & Company: Elizabeth G. Chambers, Mark Foulon, Helen Handfield-Jones, Steven M. Hankin y Edward G. Michaels III (1998; Michaels et al., 2001), y sistematizado en Iberoamérica bajo la expresión Talento Humano por Idalberto Chiavenato (2009) y Martha Alles (2005).',
+                            highlightTag: 'McKinsey (1998/2001) · Alles (2005) · Chiavenato (2009)',
+                            yearBadge: '1998 – 2009',
+                            visualIcon: 'fa-solid fa-users-rays'
+                        }
+                    ]
+                },
+                {
+                    id: 'c1-dim-7',
+                    number: '07',
+                    name: 'Lugar de acuñación',
+                    icon: 'fa-solid fa-earth-americas',
+                    image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Geografía intelectual y nodos académicos/corporativos de origen',
+                    visualWidgetType: 'geography',
+                    visualNotes: [
+                        'EE. UU. (Nueva York, New Haven y Boston)',
+                        'EE. UU. (Chicago y Nueva York)',
+                        'EE. UU. (NY, Boston) + Brasil (São Paulo) y Argentina (Buenos Aires)'
+                    ],
+                    values: [
+                        {
+                            text: 'Estados Unidos (Nueva York, New Haven y Boston) (Commons, 1893; Kaufman, 2014).',
+                            highlightTag: 'EE. UU. (Costa Este)',
+                            locations: ['🇺🇸 Nueva York', '🇺🇸 New Haven', '🇺🇸 Boston'],
+                            visualIcon: 'fa-solid fa-location-dot'
+                        },
+                        {
+                            text: 'Estados Unidos (Chicago y Nueva York) (Becker, 1964; Schultz, 1961).',
+                            highlightTag: 'EE. UU. (Escuela de Chicago y Columbia)',
+                            locations: ['🇺🇸 Chicago', '🇺🇸 Nueva York'],
+                            visualIcon: 'fa-solid fa-map-pin'
+                        },
+                        {
+                            text: 'Estados Unidos (Nueva York y Boston); Brasil (São Paulo) y Argentina (Buenos Aires) en su adaptación iberoamericana (Alles, 2005; Chambers et al., 1998; Chiavenato, 2009; Michaels et al., 2001).',
+                            highlightTag: 'EE. UU. y Eje Iberoamericano (Brasil / Argentina)',
+                            locations: ['🇺🇸 Nueva York', '🇺🇸 Boston', '🇧🇷 São Paulo', '🇦🇷 Buenos Aires'],
+                            visualIcon: 'fa-solid fa-globe'
+                        }
+                    ]
+                },
+                {
+                    id: 'c1-dim-8',
+                    number: '08',
+                    name: 'Período de auge y difusión geográfica',
+                    icon: 'fa-solid fa-clock-rotate-left',
+                    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Ondas históricas de adopción y expansión internacional',
+                    visualWidgetType: 'era-timeline',
+                    visualNotes: [
+                        'Décadas de 1970 a 1990 (EE. UU., Reino Unido, Europa y AL)',
+                        '1960–1975 (Macroeconómico) y 1990–2010 (Empresarial / OCDE)',
+                        'Finales de 1990 hasta el siglo XXI (Hegemonía en España y AL)'
+                    ],
+                    values: [
+                        {
+                            text: 'Décadas de 1970 a 1990, con predominio inicial en Estados Unidos y el Reino Unido, y posterior estandarización en Europa Occidental y América Latina (Chiavenato, 2009; Kaufman, 2014).',
+                            highlightTag: 'Auge: 1970 – 1990',
+                            eraSpan: '1970 — 1990',
+                            visualIcon: 'fa-solid fa-calendar-days'
+                        },
+                        {
+                            text: 'Primer auge macroeconómico entre 1960 y 1975, y segundo auge empresarial entre 1990 y 2010 en Estados Unidos, Europa Occidental y países de la OCDE (Becker, 1964; OCDE, 2001).',
+                            highlightTag: 'Doble Auge: 1960–1975 y 1990–2010',
+                            eraSpan: '1960–1975 / 1990–2010',
+                            visualIcon: 'fa-solid fa-wave-square'
+                        },
+                        {
+                            text: 'Desde finales de la década de 1990 hasta la actualidad (siglo XXI) en Norteamérica, Europa y Asia, con hegemonía del término Talento Humano en España y América Latina (Alles, 2005; Chiavenato, 2009; Deloitte, 2026).',
+                            highlightTag: 'Finales de 1990 – Actualidad (Siglo XXI)',
+                            eraSpan: '1998 — Presente (2026)',
+                            visualIcon: 'fa-solid fa-bolt-lightning'
+                        }
+                    ]
+                },
+                {
+                    id: 'c1-dim-9',
+                    number: '09',
+                    name: 'Ventajas y desventajas del uso del término',
+                    icon: 'fa-solid fa-scale-unbalanced',
+                    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Balance crítico: aportes organizacionales frente a limitaciones éticas o estratégicas',
+                    visualWidgetType: 'pros-cons',
+                    visualNotes: [
+                        'Claridad jurídica y orden vs. Cosificación e instrumentalización',
+                        'Inversión cuantificable y rentable vs. Reduccionismo economicista',
+                        'Potencial, creatividad y empoderamiento vs. Riesgo de elitismo (HiPo)'
+                    ],
+                    values: [
+                        {
+                            highlightTag: 'Orden Procedimental vs. Cosificación',
+                            pros: 'Claridad jurídica, orden procedimental, equidad en la administración colectiva y reconocimiento universal en la estructura corporativa (Dessler, 2019; Kaufman, 2014).',
+                            cons: 'Cosificación e instrumentalización del trabajador al equipararlo con recursos materiales o financieros fungibles, tratándolo como un sujeto pasivo de administración (Chiavenato, 2009).',
+                            visualIcon: 'fa-solid fa-scale-balanced'
+                        },
+                        {
+                            highlightTag: 'Inversión Rentable vs. Reduccionismo Economicista',
+                            pros: 'Reclasificación de los gastos en educación, capacitación y salud como una inversión cuantificable y rentable ante la alta dirección financiera (Becker, 1964; Schultz, 1961).',
+                            cons: 'Reduccionismo economicista al valorar al ser humano primordialmente como un activo patrimonial medido por su retorno financiero (OCDE, 2001; Schultz, 1961).',
+                            visualIcon: 'fa-solid fa-coins'
+                        },
+                        {
+                            highlightTag: 'Empoderamiento e Innovación vs. Riesgo de Elitismo',
+                            pros: 'Reconocimiento del potencial humano, la creatividad, el desarrollo de competencias y el empoderamiento individual alineado con la innovación (Alles, 2005; Chiavenato, 2009).',
+                            cons: 'Riesgo de elitismo organizacional y segmentación excluyente cuando se prioriza únicamente al grupo de alto potencial (HiPo) en detrimento del resto de la plantilla (Deloitte, 2026; Michaels et al., 2001).',
+                            visualIcon: 'fa-solid fa-star-half-stroke'
+                        }
+                    ]
+                },
+                {
+                    id: 'c1-dim-10',
+                    number: '10',
+                    name: 'Ejemplos organizacionales',
+                    icon: 'fa-solid fa-building-flag',
+                    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Corporaciones globales representativas de cada denominación e implementación',
+                    visualWidgetType: 'companies',
+                    visualNotes: [
+                        'IBM (Human Resources Organization) y General Electric (HR Department)',
+                        'Goldman Sachs (Human Capital Management) y Deloitte (Human Capital Practice)',
+                        'BBVA (Talento y Cultura / Talent & Culture)'
+                    ],
+                    values: [
+                        {
+                            highlightTag: 'IBM & General Electric',
+                            visualIcon: 'fa-solid fa-industry',
+                            orgCards: [
+                                {
+                                    logoKey: 'ibm',
+                                    title: 'IBM · Human Resources Organization',
+                                    citation: '(Boudreau, 2010)'
+                                },
+                                {
+                                    logoKey: 'ge',
+                                    title: 'General Electric · Human Resources Department',
+                                    citation: '(Dessler, 2019; Michaels et al., 2001)'
+                                }
+                            ]
+                        },
+                        {
+                            highlightTag: 'Goldman Sachs & Deloitte',
+                            visualIcon: 'fa-solid fa-building-shield',
+                            orgCards: [
+                                {
+                                    logoKey: 'gs',
+                                    title: 'Goldman Sachs · Human Capital Management (HCM)',
+                                    citation: '(Goldman Sachs Group, Inc., 2025)'
+                                },
+                                {
+                                    logoKey: 'deloitte',
+                                    title: 'Deloitte · Human Capital Practice',
+                                    citation: '(Deloitte, 2026)'
+                                }
+                            ]
+                        },
+                        {
+                            highlightTag: 'BBVA (Talento y Cultura)',
+                            visualIcon: 'fa-solid fa-landmark',
+                            orgCards: [
+                                {
+                                    logoKey: 'bbva',
+                                    title: 'BBVA · Talento y Cultura (Talent & Culture)',
+                                    citation: '(Banco Bilbao Vizcaya Argentaria [BBVA], 2025)'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            references: [
+                {
+                    authors: 'Alles, M. A. (2005).',
+                    title: 'Desarrollo del talento humano: Basado en competencias.',
+                    source: 'Ediciones Granica.',
+                    url: 'https://books.google.com/books/about/DESARROLLO_DEL_TALENTO_HUMANO_BASADO_EN.html?id=FYxjjgmxVaIC'
+                },
+                {
+                    authors: 'Banco Bilbao Vizcaya Argentaria. (2025).',
+                    title: 'Informe anual BBVA 2025.',
+                    source: 'BBVA.',
+                    url: 'https://accionistaseinversores.bbva.com/wp-content/uploads/2026/03/Informe-Anual-BBVA-2025_esp.pdf'
+                },
+                {
+                    authors: 'Becker, G. S. (1964).',
+                    title: 'Human capital: A theoretical and empirical analysis, with special reference to education.',
+                    source: 'National Bureau of Economic Research; Columbia University Press.',
+                    url: 'https://www.nber.org/books-and-chapters/human-capital-theoretical-and-empirical-analysis-special-reference-education-first-edition'
+                },
+                {
+                    authors: 'Boudreau, J. W. (2010).',
+                    title: "IBM's global talent management strategy: The vision of the globally integrated enterprise.",
+                    source: 'Society for Human Resource Management (SHRM).',
+                    url: 'https://www.shrm.org/content/dam/en/shrm/credentials/shrm-certification/teaching-resources/ibms-global-talent-management-strategy-the-vision-of-the-globally-integrated-enterprise-part-b.pdf'
+                },
+                {
+                    authors: 'Chambers, E. G., Foulon, M., Handfield-Jones, H., Hankin, S. M., & Michaels, E. G., III. (1998).',
+                    title: 'The war for talent.',
+                    source: 'The McKinsey Quarterly, (3), 44–57.',
+                    url: 'https://www.proquest.com/scholarly-journals/war-talent/docview/224542898/se-2'
+                },
+                {
+                    authors: 'Chiavenato, I. (2009).',
+                    title: 'Gestión del talento humano (3.ª ed.).',
+                    source: 'McGraw-Hill Interamericana.',
+                    url: 'https://gc.scalahed.com/recursos/files/r161r/w24756w/gestion-del-talento-humano-chiavenato.pdf'
+                },
+                {
+                    authors: 'Commons, J. R. (1893).',
+                    title: 'The distribution of wealth.',
+                    source: 'Macmillan and Co.',
+                    url: 'https://archive.org/details/distributionofwe0000john_e4f1'
+                },
+                {
+                    authors: 'Deloitte. (2026).',
+                    title: '2026 Global human capital trends.',
+                    source: 'Deloitte Insights.',
+                    url: 'https://www.deloitte.com/us/en/insights/topics/talent/human-capital-trends.html'
+                },
+                {
+                    authors: 'Dessler, G. (2019).',
+                    title: 'Human resource management (16.ª ed.).',
+                    source: 'Pearson Education.',
+                    url: 'https://books.google.com/books/about/Human_Resource_Management.html?id=y6RfxAEACAAJ'
+                },
+                {
+                    authors: 'Goldman Sachs Group, Inc. (2025).',
+                    title: 'Goldman Sachs 2025 annual report.',
+                    source: 'Goldman Sachs.',
+                    url: 'https://www.goldmansachs.com/investor-relations/financials/current/annual-reports/2025/annual-report.pdf'
+                },
+                {
+                    authors: 'Kaufman, B. E. (2014).',
+                    title: 'The historical development of American HRM broadly viewed.',
+                    source: 'Human Resource Management Review, 24(3), 196–218.',
+                    url: 'https://www.researchgate.net/publication/261599451_The_historical_development_of_American_HRM_broadly_viewed'
+                },
+                {
+                    authors: 'Lepak, D. P., & Snell, S. A. (1999).',
+                    title: 'The human resource architecture: Toward a theory of human capital allocation and development.',
+                    source: 'Academy of Management Review, 24(1), 31–48.',
+                    url: 'https://journals.aom.org/doi/pdf/10.5465/amr.1999.1580439'
+                },
+                {
+                    authors: 'Michaels, E., Handfield-Jones, H., & Axelrod, B. (2001).',
+                    title: 'The war for talent.',
+                    source: 'Harvard Business School Press.',
+                    url: 'https://books.google.com/books/about/The_War_for_Talent.html?id=simZCd_YUC4C'
+                },
+                {
+                    authors: 'Organización para la Cooperación y el Desarrollo Económicos. (2001).',
+                    title: 'The well-being of nations: The role of human and social capital.',
+                    source: 'OECD Publishing.',
+                    url: 'https://www.oecd.org/en/publications/2001/05/the-well-being-of-nations_g1gh268d.html'
+                },
+                {
+                    authors: 'Schultz, T. W. (1961).',
+                    title: 'Investment in human capital.',
+                    source: 'The American Economic Review, 51(1), 1–17.',
+                    url: 'https://la.utexas.edu/users/hcleaver/330T/350kPEESchultzInvestmentHumanCapital.pdf'
+                }
+            ]
+        };
+
+        const DATA_CUADRO_2 = {
+            id: 'cuadro2',
+            kicker: 'Cuadro Comparativo II · Epistemología y Praxis de la Acción Organizacional',
+            title: 'Administración vs. Gerencia vs. Gestión',
+            subtitle: 'Contraste riguroso entre la disciplina estructural-normativa de la administración, la función directiva y estratégica de la gerencia (Management) y la acción dinámica, transversal y ejecutiva de la gestión.',
+            heroImage: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80',
+            otherTableId: 'cuadro1',
+            otherTableName: 'Ir al Cuadro 1: Recurso · Capital · Talento',
+            concepts: [
+                {
+                    key: 'administracion',
+                    name: 'Administración',
+                    fullLabel: 'Administración',
+                    badge: 'Enfoque Estructural y Normativo',
+                    icon: 'fa-solid fa-building-columns',
+                    accentColor: 'slate',
+                    headerBg: 'from-slate-800 to-slate-900',
+                    softBg: 'bg-slate-50',
+                    borderCol: 'border-slate-300',
+                    badgeClass: 'bg-slate-200 text-slate-800',
+                    shortMeta: 'Proceso sistemático de planificar, organizar, dirigir y controlar recursos en un entorno formal (Taylor, 1911; Fayol, 1916; Koontz et al., 2012).'
+                },
+                {
+                    key: 'gerencia',
+                    name: 'Gerencia',
+                    fullLabel: 'Gerencia (Management)',
+                    badge: 'Enfoque Estratégico y Directivo',
+                    icon: 'fa-solid fa-chess-king',
+                    accentColor: 'amber',
+                    headerBg: 'from-amber-700 to-orange-900',
+                    softBg: 'bg-amber-50/50',
+                    borderCol: 'border-amber-300',
+                    badgeClass: 'bg-amber-100 text-amber-900',
+                    shortMeta: 'Función directiva de alto nivel enfocada en estrategia, decisiones críticas y liderazgo ejecutivo (Drucker, 1954; Mintzberg, 1973; David, 2013).'
+                },
+                {
+                    key: 'gestion',
+                    name: 'Gestión',
+                    fullLabel: 'Gestión',
+                    badge: 'Enfoque Procesual y Dinámico',
+                    icon: 'fa-solid fa-diagram-project',
+                    accentColor: 'emerald',
+                    headerBg: 'from-emerald-700 to-teal-900',
+                    softBg: 'bg-emerald-50/50',
+                    borderCol: 'border-emerald-300',
+                    badgeClass: 'bg-emerald-100 text-emerald-900',
+                    shortMeta: 'Acción dinámica y transversal orientada a hacer que las cosas ocurran movilizando capacidades humanas (Sanabria, 2007; Chiavenato, 2009; Marín-Idárraga, 2012).'
+                }
+            ],
+            dimensions: [
+                {
+                    id: 'c2-dim-1',
+                    number: '01',
+                    name: 'Concepto',
+                    icon: 'fa-solid fa-book-open',
+                    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Definición epistemológica y naturaleza de la acción organizacional',
+                    visualWidgetType: 'pillars',
+                    visualNotes: [
+                        'Disciplina científica: planificar, organizar, dirigir y controlar',
+                        'Función directiva formal: estrategia, decisiones y liderazgo',
+                        'Acción dinámica y transversal: hacer que las cosas ocurran'
+                    ],
+                    values: [
+                        {
+                            text: 'Disciplina científica y técnica encargada del diseño, integración y mantenimiento de un entorno organizacional formal en el que los individuos, trabajando en grupos, cumplen metas mediante el proceso sistemático de planificar, organizar, dirigir y controlar recursos (Fayol, 1916; Koontz et al., 2012; Robbins & Coulter, 2018).',
+                            highlightTag: 'Proceso Sistemático (PODC)',
+                            visualIcon: 'fa-solid fa-sitemap'
+                        },
+                        {
+                            text: 'Función directiva de alto nivel y ejercicio de autoridad formal enfocados en la formulación de estrategias, la toma de decisiones críticas, el liderazgo de personas y la asignación de recursos para asegurar la competitividad y supervivencia de la empresa (David, 2013; Drucker, 1954; Mintzberg, 1973).',
+                            highlightTag: 'Dirección Estratégica y Autoridad Formal',
+                            visualIcon: 'fa-solid fa-chess-queen'
+                        },
+                        {
+                            text: 'Acción dinámica, transversal y ejecutiva orientada a hacer que las cosas ocurran mediante la articulación de procesos, la movilización de capacidades humanas y la ejecución de prácticas concretas que transforman las decisiones estratégicas en resultados observables (Chiavenato, 2009; Marín-Idárraga, 2012; Sanabria, 2007).',
+                            highlightTag: 'Acción Dinámica: Hacer que las Cosas Ocurran',
+                            visualIcon: 'fa-solid fa-gears'
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-2',
+                    number: '02',
+                    name: 'Vinculación predominante con la concepción del personal',
+                    icon: 'fa-solid fa-link',
+                    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Articulación directa con los conceptos de Recurso, Capital y Talento Humano',
+                    visualWidgetType: 'paradigm',
+                    visualNotes: [
+                        'Administración de Recursos Humanos (ARH)',
+                        'Gerencia del Talento Humano (AL) / Capital Humano (HCM Anglosajón)',
+                        'Gestión del Talento Humano (GTH) y Gestión del Capital Humano'
+                    ],
+                    values: [
+                        {
+                            text: 'Vinculada de forma directa con Recursos Humanos (Administración de Recursos Humanos - ARH). Debido a que los recursos son insumos pasivos regulados por normas, contratos y presupuestos, requieren ser administrados mediante procedimientos formales de planificación, organización y control (Chiavenato, 2009; Dessler, 2019).',
+                            highlightTag: 'Administración de Recursos Humanos (ARH)',
+                            visualIcon: 'fa-solid fa-users-rectangle'
+                        },
+                        {
+                            text: 'Vinculada en los organigramas y posgrados latinoamericanos con Talento Humano (Gerencia del Talento Humano), al requerir liderazgo directivo, conducción ejecutiva y toma de decisiones estratégicas sobre el potencial humano (Drucker, 1954; Sanabria, 2007), y en el ámbito corporativo anglosajón con el gobierno estratégico del Capital Humano (Goldman Sachs Group, Inc., 2025).',
+                            highlightTag: 'Gerencia del Talento / Capital Humano (HCM)',
+                            visualIcon: 'fa-solid fa-user-shield'
+                        },
+                        {
+                            text: 'Vinculada operativamente con Talento Humano (Gestión del Talento Humano) en la literatura sobre dinamización de competencias (Alles, 2005; Chiavenato, 2009), así como con Capital Humano (Gestión del Capital Humano) en cuanto al despliegue de procesos para acumular, medir y rentabilizar el conocimiento y la formación (Becker, 1964; Sanabria, 2007).',
+                            highlightTag: 'Gestión del Talento y del Capital Humano',
+                            visualIcon: 'fa-solid fa-people-arrows'
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-3',
+                    number: '03',
+                    name: 'Enfoque organizacional y rol del responsable',
+                    icon: 'fa-solid fa-id-badge',
+                    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Lógica sistémica dominante y perfil de actuación de quien conduce',
+                    visualWidgetType: 'paradigm',
+                    visualNotes: [
+                        'Regulador y garante de normas, estructuras y cumplimiento',
+                        'Líder, estratega, negociador y tomador de decisiones',
+                        'Facilitador, articulador y catalizador en la acción cotidiana'
+                    ],
+                    values: [
+                        {
+                            text: 'Enfoque estructural, normativo y funcionalista centrado en la eficiencia interna del sistema. El administrador de personal actúa como un regulador y garante de normas, procedimientos, estructuras salariales y cumplimiento legal (Fayol, 1916; Marín-Idárraga, 2012).',
+                            highlightTag: 'Rol: Regulador y Garante Normativo',
+                            visualIcon: 'fa-solid fa-clipboard-list'
+                        },
+                        {
+                            text: 'Enfoque estratégico, decisorio y de conducción jerárquica orientado al entorno y los objetivos de negocio. El gerente actúa como líder, estratega, negociador y tomador de decisiones que dirige a los equipos hacia metas corporativas (Drucker, 1954; Mintzberg, 1973).',
+                            highlightTag: 'Rol: Líder, Estratega y Decisor',
+                            visualIcon: 'fa-solid fa-compass'
+                        },
+                        {
+                            text: 'Enfoque procesual, adaptativo y práctico centrado en la eficacia, la innovación y el flujo de trabajo. El gestor actúa como un facilitador, articulador y catalizador que moviliza conocimientos, competencias y recursos en la acción cotidiana (Alles, 2005; Sanabria, 2007).',
+                            highlightTag: 'Rol: Facilitador, Articulador y Catalizador',
+                            visualIcon: 'fa-solid fa-arrows-spin'
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-4',
+                    number: '04',
+                    name: 'Alcance',
+                    icon: 'fa-solid fa-Sliders',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Cobertura estructural, niveles jerárquicos y horizonte temporal',
+                    visualWidgetType: 'scope-meter',
+                    visualNotes: [
+                        'Estructura formal completa (Corto y mediano plazo)',
+                        'Niveles directivos e intermedios (Mediano y largo plazo)',
+                        'Transversal a todos los niveles y flujos de valor (Corto, mediano y largo plazo)'
+                    ],
+                    values: [
+                        {
+                            text: 'Totalidad de la estructura formal de la organización (pública o privada) con énfasis en el diseño orgánico, manuales de funciones, políticas internas, presupuestos, auditoría y control de recursos a corto y mediano plazo (Koontz et al., 2012; Robbins & Coulter, 2018).',
+                            highlightTag: 'Diseño Orgánico, Políticas y Auditoría',
+                            meterLevel: 60,
+                            horizon: 'Corto y Mediano Plazo',
+                            visualIcon: 'fa-solid fa-Project-diagram'
+                        },
+                        {
+                            text: 'Niveles directivos e intermedios de empresas competitivas con horizonte de mediano y largo plazo. Abarca la dirección estratégica, formulación de políticas de inversión en personal, liderazgo ejecutivo, negociación y gobierno del desempeño (David, 2013; Drucker, 1954).',
+                            highlightTag: 'Cúpula Directiva y Gobierno del Desempeño',
+                            meterLevel: 85,
+                            horizon: 'Mediano y Largo Plazo',
+                            visualIcon: 'fa-solid fa-bullseye'
+                        },
+                        {
+                            text: 'Transversal a todos los niveles y flujos de valor de la organización en el corto, mediano y largo plazo. Abarca la ejecución de programas de formación, evaluación del desempeño, gestión del cambio, clima laboral y desarrollo de competencias (Alles, 2005; Chiavenato, 2009).',
+                            highlightTag: 'Transversal a Flujos de Valor y Cambio',
+                            meterLevel: 100,
+                            horizon: 'Corto, Mediano y Largo Plazo',
+                            visualIcon: 'fa-solid fa-infinity'
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-5',
+                    number: '05',
+                    name: 'Tipos',
+                    icon: 'fa-solid fa-boxes-packing',
+                    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Clasificaciones según naturaleza, fases, autoridad, roles y metodologías',
+                    visualWidgetType: 'typology',
+                    visualNotes: [
+                        'Naturaleza del ente, fases del proceso (Fayol) y áreas funcionales',
+                        'Régimen de propiedad, nivel directivo y roles de Mintzberg (1973)',
+                        'Nivel de despliegue y enfoque metodológico en personal'
+                    ],
+                    values: [
+                        {
+                            highlightTag: '3 Criterios de Clasificación de la Administración',
+                            visualIcon: 'fa-solid fa-landmark',
+                            groups: [
+                                {
+                                    title: '1. Según la naturaleza del ente (Koontz et al., 2012; Robbins & Coulter, 2018):',
+                                    items: [
+                                        '<strong>Administración pública:</strong> Instituciones del Estado orientadas al servicio público y cumplimiento legal.',
+                                        '<strong>Administración privada:</strong> Empresas orientadas a la rentabilidad y eficiencia de mercado.',
+                                        '<strong>Administración mixta:</strong> Entidades con capital y control conjunto público-privado.'
+                                    ]
+                                },
+                                {
+                                    title: '2. Según las fases del proceso administrativo (Fayol, 1916; Koontz et al., 2012):',
+                                    items: [
+                                        '<strong>Fase mecánica o estructural:</strong> Planificación y organización formal.',
+                                        '<strong>Fase dinámica u operativa:</strong> Integración de personal, dirección y control.'
+                                    ]
+                                },
+                                {
+                                    title: '3. Según el área funcional (Chiavenato, 2009; Dessler, 2019):',
+                                    items: [
+                                        '<strong>Áreas funcionales:</strong> Administración de recursos humanos, financiera, de operaciones y mercadológica.'
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            highlightTag: '3 Criterios de Clasificación de la Gerencia',
+                            visualIcon: 'fa-solid fa-user-tie',
+                            groups: [
+                                {
+                                    title: '1. Según el régimen de propiedad y autoridad (Drucker, 1954; Sanabria, 2007):',
+                                    items: [
+                                        '<strong>Gerencia patrimonial:</strong> Puestos directivos retenidos por propietarios o núcleos familiares.',
+                                        '<strong>Gerencia política:</strong> Cargos clave asignados por lealtades políticas o grupos de poder.',
+                                        '<strong>Gerencia por objetivos (profesional):</strong> Dirección basada en el mérito técnico y el logro de metas medibles.'
+                                    ]
+                                },
+                                {
+                                    title: '2. Según el nivel jerárquico directivo (David, 2013; Robbins & Coulter, 2018):',
+                                    items: [
+                                        '<strong>Alta gerencia:</strong> Directores ejecutivos (CEO) y vicepresidentes.',
+                                        '<strong>Gerencia media:</strong> Gerentes de departamento o unidad (e.g., Gerente de Talento Humano).',
+                                        '<strong>Gerencia de primera línea:</strong> Supervisores y jefes operativos.'
+                                    ]
+                                },
+                                {
+                                    title: '3. Según los roles gerenciales (Mintzberg, 1973):',
+                                    items: [
+                                        '<strong>Roles de Mintzberg:</strong> Interpersonales (líder, enlace), Informativos (monitor, portavoz) y Decisorios (emprendedor, asignador de recursos, negociador).'
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            highlightTag: '2 Criterios de Clasificación de la Gestión',
+                            visualIcon: 'fa-solid fa-diagram-next',
+                            groups: [
+                                {
+                                    title: '1. Según su nivel de despliegue (David, 2013; Sanabria, 2007):',
+                                    items: [
+                                        '<strong>Gestión estratégica:</strong> Transformación organizacional y ventaja competitiva de largo plazo.',
+                                        '<strong>Gestión táctica:</strong> Articulación de proyectos y recursos entre áreas.',
+                                        '<strong>Gestión operativa:</strong> Ejecución diaria de procesos e indicadores.'
+                                    ]
+                                },
+                                {
+                                    title: '2. Según el enfoque metodológico en personal (Alles, 2005; Chiavenato, 2009):',
+                                    items: [
+                                        '<strong>Gestión por competencias:</strong> Desarrollo y evaluación de comportamientos de alto desempeño.',
+                                        '<strong>Gestión por procesos:</strong> Optimización de flujos transversales de trabajo.',
+                                        '<strong>Gestión del conocimiento:</strong> Captura, aprendizaje y transferencia de capital intelectual (Becker, 1964).'
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-6',
+                    number: '06',
+                    name: 'Importancia',
+                    icon: 'fa-solid fa-medal',
+                    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Valor diferencial aportado al funcionamiento y perennidad de la organización',
+                    visualWidgetType: 'impact',
+                    visualNotes: [
+                        'Orden estructural, racionalización y uso eficiente de recursos',
+                        'Conducción estratégica ante incertidumbre y cohesión directiva',
+                        'Materialización práctica de la estrategia, agilidad e innovación'
+                    ],
+                    values: [
+                        {
+                            text: 'Establecimiento del orden estructural, la coordinación jerárquica, la racionalización del trabajo, la estabilidad normativa y el uso eficiente de los recursos disponibles (Fayol, 1916; Taylor, 1911).',
+                            highlightTag: 'Orden Estructural y Eficiencia de Recursos',
+                            visualIcon: 'fa-solid fa-shield-halved'
+                        },
+                        {
+                            text: 'Conducción estratégica de la empresa ante entornos inciertos, cohesión del liderazgo directivo y toma de decisiones de inversión que maximizan el valor económico y competitivo (David, 2013; Drucker, 1954).',
+                            highlightTag: 'Conducción Estratégica y Decisiones de Valor',
+                            visualIcon: 'fa-solid fa-crown'
+                        },
+                        {
+                            text: 'Materialización práctica de la estrategia mediante la agilidad operativa, el compromiso de las personas, la innovación continua y la adaptación al cambio (Chiavenato, 2009; Sanabria, 2007).',
+                            highlightTag: 'Materialización Práctica y Agilidad Operativa',
+                            visualIcon: 'fa-solid fa-bolt'
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-7',
+                    number: '07',
+                    name: 'Autoría y origen conceptual',
+                    icon: 'fa-solid fa-scroll',
+                    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Escuelas de pensamiento, autores clásicos y epistemólogos contemporáneos',
+                    visualWidgetType: 'authors',
+                    visualNotes: [
+                        'Taylor (1911) y Fayol (1916) · Enfoque neoclásico de Koontz y Weihrich',
+                        'Peter F. Drucker (1954), Henry Mintzberg (1973) y Fred R. David (2013)',
+                        'Tradición francófona (sciences de la gestion) · Sanabria (2007), Marín-Idárraga (2012), Chiavenato y Alles'
+                    ],
+                    values: [
+                        {
+                            text: 'Sistematizada científicamente por Frederick Winslow Taylor (1911) en The Principles of Scientific Management y por Henri Fayol (1916) en Administration industrielle et générale, y consolidada en el enfoque neoclásico por Harold Koontz y Heinz Weihrich (Koontz et al., 2012).',
+                            highlightTag: 'Taylor (1911) · Fayol (1916) · Koontz & Weihrich',
+                            yearBadge: '1911 – 1916 / Neoclásicos',
+                            visualIcon: 'fa-solid fa-industry'
+                        },
+                        {
+                            text: 'Formalizada como disciplina directiva moderna (Management) por Peter F. Drucker (1954) en The Practice of Management, caracterizada empíricamente por Henry Mintzberg (1973) y desarrollada en su vertiente estratégica por Fred R. David (2013).',
+                            highlightTag: 'Drucker (1954) · Mintzberg (1973) · David (2013)',
+                            yearBadge: '1954 – 1973 – 2013',
+                            visualIcon: 'fa-solid fa-briefcase'
+                        },
+                        {
+                            text: 'Desarrollada en la tradición francófona e iberoamericana contemporánea (sciences de la gestion) y sistematizada epistemológicamente frente a la administración y la gerencia por Mauricio Sanabria (2007), Diego Armando Marín-Idárraga (2012), Idalberto Chiavenato (2009) y Martha Alles (2005).',
+                            highlightTag: 'Sciences de la Gestion · Sanabria (2007) · Marín-Idárraga (2012)',
+                            yearBadge: '2005 – 2012',
+                            visualIcon: 'fa-solid fa-atom'
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-8',
+                    number: '08',
+                    name: 'Lugar de acuñación',
+                    icon: 'fa-solid fa-map-location-dot',
+                    image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Centros geográficos de origen académico e institucionalización',
+                    visualWidgetType: 'geography',
+                    visualNotes: [
+                        'Francia (París) y Estados Unidos (Filadelfia y Nueva York)',
+                        'Estados Unidos (Nueva York) y Canadá (Montreal)',
+                        'Francia (París), España (Madrid, Barcelona) y América Latina (São Paulo, Buenos Aires, Bogotá)'
+                    ],
+                    values: [
+                        {
+                            text: 'Francia (París) y Estados Unidos (Filadelfia y Nueva York) (Fayol, 1916; Taylor, 1911).',
+                            highlightTag: 'Francia y Estados Unidos',
+                            locations: ['🇫🇷 París', '🇺🇸 Filadelfia', '🇺🇸 Nueva York'],
+                            visualIcon: 'fa-solid fa-location-dot'
+                        },
+                        {
+                            text: 'Estados Unidos (Nueva York) y Canadá (Montreal) (Drucker, 1954; Mintzberg, 1973).',
+                            highlightTag: 'Norteamérica (EE. UU. y Canadá)',
+                            locations: ['🇺🇸 Nueva York', '🇨🇦 Montreal'],
+                            visualIcon: 'fa-solid fa-map-pin'
+                        },
+                        {
+                            text: 'Francia (París), España (Madrid y Barcelona) y América Latina (São Paulo, Buenos Aires y Bogotá) (Alles, 2005; Chiavenato, 2009; Sanabria, 2007).',
+                            highlightTag: 'Eje Francófono e Iberoamericano',
+                            locations: ['🇫🇷 París', '🇪🇸 Madrid / Barcelona', '🇧🇷 São Paulo', '🇦🇷 Buenos Aires', '🇨🇴 Bogotá'],
+                            visualIcon: 'fa-solid fa-earth-americas'
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-9',
+                    number: '09',
+                    name: 'Período de auge y difusión geográfica',
+                    icon: 'fa-solid fa-hourglass-half',
+                    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Consolidación histórica y adopción regional en el mundo corporativo y universitario',
+                    visualWidgetType: 'era-timeline',
+                    visualNotes: [
+                        '1911–1970 (Europa Continental, EE. UU., México, Argentina y Colombia)',
+                        'Décadas de 1950 a 1990 (EE. UU., Venezuela, Colombia, Perú y Centroamérica)',
+                        'Década de 1990 hasta el siglo XXI (Francia, España y toda América Latina)'
+                    ],
+                    values: [
+                        {
+                            text: 'Desde principios del siglo XX (1911–1970) como paradigma dominante en Europa Continental, Estados Unidos y América Latina (especialmente en México, Argentina y Colombia para denominar la carrera universitaria y la función de personal) (Marín-Idárraga, 2012; Sanabria, 2007).',
+                            highlightTag: 'Principios del Siglo XX (1911 – 1970)',
+                            eraSpan: '1911 — 1970',
+                            visualIcon: 'fa-solid fa-landmark-dome'
+                        },
+                        {
+                            text: 'Entre las décadas de 1950 y 1990 con el auge de las escuelas de negocios y la dirección estratégica en Estados Unidos, y amplia adopción en Venezuela, Colombia, Perú y Centroamérica como traducción directa de Management (David, 2013; Sanabria, 2007).',
+                            highlightTag: 'Décadas de 1950 a 1990 (Escuelas de Negocios)',
+                            eraSpan: '1950 — 1990',
+                            visualIcon: 'fa-solid fa-graduation-cap'
+                        },
+                        {
+                            text: 'Desde la década de 1990 hasta la actualidad (siglo XXI), con fuerte predominio en Francia, España y toda América Latina para denominar los modelos modernos de manejo de intangibles, calidad, competencias y personas (Chiavenato, 2009; Sanabria, 2007).',
+                            highlightTag: 'Década de 1990 – Actualidad (Siglo XXI)',
+                            eraSpan: '1990 — Presente (Siglo XXI)',
+                            visualIcon: 'fa-solid fa-rocket'
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-10',
+                    number: '10',
+                    name: 'Ventajas y desventajas del uso del término',
+                    icon: 'fa-solid fa-scale-balanced',
+                    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Evaluación crítica de las fortalezas metodológicas y sesgos operativos de cada término',
+                    visualWidgetType: 'pros-cons',
+                    visualNotes: [
+                        'Rigor y claridad jerárquica vs. Connotación mecanicista y burocrática',
+                        'Liderazgo ejecutivo y visión estratégica vs. Tendencia al verticalismo',
+                        'Dinamismo y participación activa vs. Ambigüedad conceptual o cortoplacismo'
+                    ],
+                    values: [
+                        {
+                            highlightTag: 'Rigor Normativo vs. Rigidez Burocrática',
+                            pros: 'Rigor metodológico, universalidad de sus principios funcionales, claridad jerárquica y solidez en el control normativo y presupuestario del personal (Koontz et al., 2012).',
+                            cons: 'Connotación mecanicista, burocrática y estática que tiende a privilegiar el cumplimiento del procedimiento sobre la flexibilidad y la innovación humana (Chiavenato, 2009; Sanabria, 2007).',
+                            visualIcon: 'fa-solid fa-file-shield'
+                        },
+                        {
+                            highlightTag: 'Liderazgo Estratégico vs. Verticalismo Cúpula',
+                            pros: 'Énfasis en el liderazgo ejecutivo, la visión estratégica de negocio, la autoridad decisoria y la responsabilidad directa por resultados de alto impacto (Drucker, 1954; Mintzberg, 1973).',
+                            cons: 'Tendencia al verticalismo y a circunscribir la acción directiva únicamente a la cúpula o a los mandos formales, restando protagonismo a la autogestión de los equipos operativos (Sanabria, 2007).',
+                            visualIcon: 'fa-solid fa-sitemap'
+                        },
+                        {
+                            highlightTag: 'Dinamismo y Valor vs. Ambigüedad Pragmática',
+                            pros: 'Dinamismo, orientación al logro, flexibilidad ante el cambio y reconocimiento de la participación activa de todos los miembros de la organización en la creación de valor (Alles, 2005; Sanabria, 2007).',
+                            cons: 'Ambigüedad conceptual por su uso extensivo como sinónimo genérico de administración y riesgo de pragmatismo cortoplacista si se desvincula de la teoría administrativa formal (Marín-Idárraga, 2012; Sanabria, 2007).',
+                            visualIcon: 'fa-solid fa-arrows-rotate'
+                        }
+                    ]
+                },
+                {
+                    id: 'c2-dim-11',
+                    number: '11',
+                    name: 'Ejemplos organizacionales',
+                    icon: 'fa-solid fa-building-circle-check',
+                    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+                    visualSubtitle: 'Instituciones públicas, bancarias y grupos corporativos donde predomina cada modelo',
+                    visualWidgetType: 'companies',
+                    visualNotes: [
+                        'Consejo de la Judicatura Federal / Sector Público y corporaciones industriales',
+                        'Goldman Sachs (Human Capital Management Division) y grupos empresariales latinoamericanos',
+                        'BBVA (Modelo de Gestión de Talento y Cultura)'
+                    ],
+                    values: [
+                        {
+                            highlightTag: 'Sector Público e Industria Tradicional',
+                            visualIcon: 'fa-solid fa-building-columns',
+                            orgCards: [
+                                {
+                                    logoKey: 'cjf',
+                                    title: 'Consejo de la Judicatura Federal / Sector Público · Dirección General de Administración de Recursos Humanos',
+                                    citation: '(Dessler, 2019; Robbins & Coulter, 2018)'
+                                },
+                                {
+                                    logoKey: 'industrial',
+                                    title: 'Corporaciones Industriales Tradicionales · Administración de Personal',
+                                    citation: '(Dessler, 2019; Robbins & Coulter, 2018)'
+                                }
+                            ]
+                        },
+                        {
+                            highlightTag: 'Goldman Sachs y Grupos Latinoamericanos',
+                            visualIcon: 'fa-solid fa-chart-column',
+                            orgCards: [
+                                {
+                                    logoKey: 'gs',
+                                    title: 'Goldman Sachs · Human Capital Management Division (Gerencia de Capital Humano)',
+                                    citation: '(Goldman Sachs Group, Inc., 2025)'
+                                },
+                                {
+                                    logoKey: 'latam',
+                                    title: 'Grupos Empresariales Latinoamericanos · Gerencias de Talento Humano',
+                                    citation: '(Sanabria, 2007)'
+                                }
+                            ]
+                        },
+                        {
+                            highlightTag: 'BBVA (Gestión de Talento y Cultura)',
+                            visualIcon: 'fa-solid fa-globe',
+                            orgCards: [
+                                {
+                                    logoKey: 'bbva',
+                                    title: 'BBVA · Modelo de Gestión de Talento y Cultura',
+                                    citation: '(Banco Bilbao Vizcaya Argentaria [BBVA], 2025)'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            references: [
+                {
+                    authors: 'Alles, M. A. (2005).',
+                    title: 'Desarrollo del talento humano: Basado en competencias.',
+                    source: 'Ediciones Granica.',
+                    url: 'https://books.google.com/books/about/DESARROLLO_DEL_TALENTO_HUMANO_BASADO_EN.html?id=FYxjjgmxVaIC'
+                },
+                {
+                    authors: 'Banco Bilbao Vizcaya Argentaria. (2025).',
+                    title: 'Informe anual BBVA 2025.',
+                    source: 'BBVA.',
+                    url: 'https://accionistaseinversores.bbva.com/wp-content/uploads/2026/03/Informe-Anual-BBVA-2025_esp.pdf'
+                },
+                {
+                    authors: 'Becker, G. S. (1964).',
+                    title: 'Human capital: A theoretical and empirical analysis, with special reference to education.',
+                    source: 'National Bureau of Economic Research; Columbia University Press.',
+                    url: 'https://www.nber.org/books-and-chapters/human-capital-theoretical-and-empirical-analysis-special-reference-education-first-edition'
+                },
+                {
+                    authors: 'Chiavenato, I. (2009).',
+                    title: 'Gestión del talento humano (3.ª ed.).',
+                    source: 'McGraw-Hill Interamericana.',
+                    url: 'https://gc.scalahed.com/recursos/files/r161r/w24756w/gestion-del-talento-humano-chiavenato.pdf'
+                },
+                {
+                    authors: 'David, F. R. (2013).',
+                    title: 'Conceptos de administración estratégica (14.ª ed.).',
+                    source: 'Pearson Educación.',
+                    url: 'https://gc.scalahed.com/recursos/files/r161r/w25139w/conceptos-de-administracion-estrategica.pdf'
+                },
+                {
+                    authors: 'Dessler, G. (2019).',
+                    title: 'Human resource management (16.ª ed.).',
+                    source: 'Pearson Education.',
+                    url: 'https://books.google.com/books/about/Human_Resource_Management.html?id=y6RfxAEACAAJ'
+                },
+                {
+                    authors: 'Drucker, P. F. (1954).',
+                    title: 'The practice of management.',
+                    source: 'Harper & Brothers.',
+                    url: 'https://api.pageplace.de/preview/DT0400.9781136356223_A23840485/preview-9781136356223_A23840485.pdf'
+                },
+                {
+                    authors: 'Fayol, H. (1916).',
+                    title: 'Administration industrielle et générale: Prévoyance, organisation, commandement, coordination, contrôle.',
+                    source: 'H. Dunod et E. Pinat.',
+                    url: 'https://books.google.com/books/about/Administration_industrielle_et_g%C3%A9n%C3%A9ral.html?id=qHbVvedouKMC'
+                },
+                {
+                    authors: 'Goldman Sachs Group, Inc. (2025).',
+                    title: 'Goldman Sachs 2025 annual report.',
+                    source: 'Goldman Sachs.',
+                    url: 'https://www.goldmansachs.com/investor-relations/financials/current/annual-reports/2025/annual-report.pdf'
+                },
+                {
+                    authors: 'Koontz, H., Weihrich, H., & Cannice, M. (2012).',
+                    title: 'Administración: Una perspectiva global y empresarial (14.ª ed.).',
+                    source: 'McGraw-Hill Interamericana.',
+                    url: 'https://books.google.com/books/about/Administraci%C3%B3n.html?id=Ea_JMQEACAAJ'
+                },
+                {
+                    authors: 'Marín-Idárraga, D. A. (2012).',
+                    title: 'Consideraciones epistemológicas en torno al carácter científico de la administración.',
+                    source: 'Innovar, 22(46), 39–52.',
+                    url: 'https://www.redalyc.org/pdf/818/81827442005.pdf'
+                },
+                {
+                    authors: 'Mintzberg, H. (1973).',
+                    title: 'The nature of managerial work.',
+                    source: 'Harper & Row.',
+                    url: 'https://books.google.com/books/about/The_Nature_of_Managerial_Work.html?id=3o8uAAAAMAAJ'
+                },
+                {
+                    authors: 'Robbins, S. P., & Coulter, M. (2018).',
+                    title: 'Administración (13.ª ed.).',
+                    source: 'Pearson Educación.',
+                    url: 'https://bibliotecaceunem.com/libros/Acervo%20bibliogr%C3%A1fico%20Lic.%20Pedagog%C3%ADa/110.-%20Robbins%20Stephen%20P%201943%20autor%20%20%20Administraci%C3%B3n%20%20Ciudad%20de%20M%C3%A9xico%20Pearson%20%20%202018.pdf'
+                },
+                {
+                    authors: 'Sanabria, M. (2007).',
+                    title: 'De los conceptos de administración, gobierno, gerencia, gestión y management: Algunos elementos de corte epistemológico y aportes para una mayor comprensión.',
+                    source: 'Universidad & Empresa, 6(13), 155–194.',
+                    url: 'https://www.redalyc.org/pdf/1872/187217485009.pdf'
+                },
+                {
+                    authors: 'Taylor, F. W. (1911).',
+                    title: 'The principles of scientific management.',
+                    source: 'Harper & Brothers.',
+                    url: 'https://archive.org/download/principlesofscie00taylrich/principlesofscie00taylrich.pdf'
+                }
+            ]
+        };
+
+        /* ============================================================================
+           APPLICATION STATE & NAVIGATION LOGIC
+           ============================================================================ */
+        let currentView = 'home'; // 'home' | 'cuadro1' | 'cuadro2'
+        let activeDataset = DATA_CUADRO_1;
+        let currentDimIndex = 0;
+        let displayMode = 'matrix'; // 'matrix' (default) | 'explorer' | 'timeline'
+        let columnSpotlight = 'all'; // 'all' | 0 | 1 | 2
+        let searchQuery = '';
+
+        function navigateTo(target) {
+            currentView = target;
+            const homeEl = document.getElementById('view-home');
+            const workspaceEl = document.getElementById('view-table-workspace');
+            const topRefsBtn = document.getElementById('btn-top-refs');
+
+            // Update Top Navbar Active States
+            const navHome = document.getElementById('nav-home');
+            const navC1 = document.getElementById('nav-cuadro1');
+            const navC2 = document.getElementById('nav-cuadro2');
+
+            [navHome, navC1, navC2].forEach(btn => {
+                btn.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/60';
+            });
+
+            if (target === 'home') {
+                navHome.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-blue-600 text-white shadow-sm';
+                homeEl.classList.remove('hidden');
+                workspaceEl.classList.add('hidden');
+                topRefsBtn.classList.add('hidden');
+                topRefsBtn.classList.remove('flex');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            // Switching to either Cuadro 1 or Cuadro 2
+            activeDataset = (target === 'cuadro1') ? DATA_CUADRO_1 : DATA_CUADRO_2;
+            currentDimIndex = 0;
+            columnSpotlight = 'all';
+            searchQuery = '';
+            document.getElementById('table-search-input').value = '';
+            document.getElementById('clear-search-btn').classList.add('hidden');
+
+            if (target === 'cuadro1') {
+                navC1.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-blue-600 text-white shadow-sm';
+            } else {
+                navC2.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-emerald-600 text-white shadow-sm';
+            }
+
+            homeEl.classList.add('hidden');
+            workspaceEl.classList.remove('hidden');
+            topRefsBtn.classList.remove('hidden');
+            topRefsBtn.classList.add('flex');
+
+            renderWorkspaceHeader();
+            renderDimensionSidebar();
+            setDisplayMode('matrix');
+            renderReferencesSection();
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderWorkspaceHeader() {
+            const ds = activeDataset;
+            document.getElementById('table-hero-img').src = ds.heroImage;
+            document.getElementById('table-badge-crumb').textContent = ds.title;
+            document.getElementById('table-kicker').textContent = ds.kicker;
+            document.getElementById('table-main-title').textContent = ds.title;
+            document.getElementById('table-main-desc').textContent = ds.subtitle;
+            document.getElementById('matrix-view-title').textContent = `Matriz Comparativa: ${ds.title}`;
+
+            const switchBtn = document.getElementById('table-switch-other');
+            switchBtn.onclick = () => navigateTo(ds.otherTableId);
+            switchBtn.innerHTML = `<span>${ds.otherTableName}</span> <i class="fa-solid fa-arrow-right-arrow-left text-xs"></i>`;
+
+            const bottomSwitchBtn = document.getElementById('bottom-switch-table-btn');
+            bottomSwitchBtn.onclick = () => navigateTo(ds.otherTableId);
+            bottomSwitchBtn.innerHTML = `<span>${ds.otherTableName}</span> <i class="fa-solid fa-arrow-right"></i>`;
+
+            // Update Column Filter Buttons
+            ds.concepts.forEach((c, idx) => {
+                const btn = document.getElementById(`col-filter-${idx}`);
+                btn.textContent = c.name;
+            });
+            updateColumnFilterUI();
+
+            // Render 3 Concept Summary Cards in Hero
+            const cardsHtml = ds.concepts.map((c, idx) => `
+                <div onclick="setColumnSpotlight(${idx === columnSpotlight ? "'all'" : idx})" 
+                     class="cursor-pointer group bg-white/10 hover:bg-white/15 backdrop-blur-md border ${columnSpotlight === idx ? 'border-blue-400 ring-2 ring-blue-400/40' : 'border-white/15'} rounded-2xl p-4 transition-all">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/15 text-white">
+                            ${c.badge}
+                        </span>
+                        <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-blue-300 group-hover:scale-110 transition-transform">
+                            <i class="${c.icon}"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-white">${c.fullLabel}</h3>
+                    <p class="text-xs text-slate-300 mt-1 leading-relaxed">${c.shortMeta}</p>
+                </div>
+            `).join('');
+            document.getElementById('table-concept-cards').innerHTML = cardsHtml;
+        }
+
+        function setDisplayMode(mode) {
+            displayMode = mode;
+            const modes = ['explorer', 'matrix', 'timeline'];
+            modes.forEach(m => {
+                const btn = document.getElementById(`mode-btn-${m}`);
+                const container = document.getElementById(`container-mode-${m}`);
+                if (m === mode) {
+                    btn.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-slate-900 text-white shadow-sm';
+                    container.classList.remove('hidden');
+                } else {
+                    btn.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-slate-900';
+                    container.classList.add('hidden');
+                }
+            });
+            renderActiveViewContent();
+        }
+
+        function setColumnSpotlight(col) {
+            columnSpotlight = col;
+            updateColumnFilterUI();
+            renderWorkspaceHeader();
+            renderActiveViewContent();
+        }
+
+        function updateColumnFilterUI() {
+            const allBtn = document.getElementById('col-filter-all');
+            allBtn.className = (columnSpotlight === 'all')
+                ? 'px-2 py-1 rounded-md font-bold bg-white text-slate-900 shadow-sm'
+                : 'px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900';
+
+            [0, 1, 2].forEach(idx => {
+                const btn = document.getElementById(`col-filter-${idx}`);
+                btn.className = (columnSpotlight === idx)
+                    ? 'px-2 py-1 rounded-md font-bold bg-slate-900 text-white shadow-sm'
+                    : 'px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900';
+            });
+        }
+
+        function highlightText(rawHtml) {
+            if (!searchQuery || searchQuery.trim().length < 2) return rawHtml;
+            const escaped = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`(?![^<]*>)(${escaped})`, 'gi');
+            return rawHtml.replace(regex, '<mark class="search-highlight">$1</mark>');
+        }
+
+        function handleSearchInput(val) {
+            searchQuery = val.trim();
+            const clearBtn = document.getElementById('clear-search-btn');
+            if (searchQuery.length > 0) {
+                clearBtn.classList.remove('hidden');
+                // If user searches while in explorer mode, check if another dimension matches or switch to matrix for global overview if desired
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+            renderDimensionSidebar();
+            renderActiveViewContent();
+        }
+
+        function clearSearch() {
+            searchQuery = '';
+            document.getElementById('table-search-input').value = '';
+            document.getElementById('clear-search-btn').classList.add('hidden');
+            renderDimensionSidebar();
+            renderActiveViewContent();
+        }
+
+        function selectDimension(index) {
+            currentDimIndex = index;
+            renderDimensionSidebar();
+            renderExplorerStage();
+        }
+
+        function renderDimensionSidebar() {
+            const ds = activeDataset;
+            const total = ds.dimensions.length;
+            document.getElementById('dim-counter-badge').textContent = `${currentDimIndex + 1} / ${total}`;
+
+            const listHtml = ds.dimensions.map((dim, idx) => {
+                const isActive = (idx === currentDimIndex);
+                // Check if dimension matches search query
+                let hasMatch = false;
+                if (searchQuery.length >= 2) {
+                    const serialized = JSON.stringify(dim).toLowerCase();
+                    hasMatch = serialized.includes(searchQuery.toLowerCase());
+                }
+
+                return `
+                    <button onclick="selectDimension(${idx})"
+                            class="w-full text-left px-3.5 py-3 rounded-2xl transition-all flex items-center justify-between gap-2.5 ${isActive ? 'dim-btn-active' : 'hover:bg-slate-100 text-slate-700'}">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <span class="w-8 h-8 rounded-xl flex items-center justify-center text-xs font-bold shrink-0 ${isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'}">
+                                <i class="${dim.icon}"></i>
+                            </span>
+                            <div class="truncate">
+                                <span class="text-[10px] font-bold uppercase tracking-wider block ${isActive ? 'text-blue-200' : 'text-slate-400'}">Dimensión ${dim.number}</span>
+                                <span class="text-xs sm:text-sm font-bold truncate block">${dim.name}</span>
+                            </div>
+                        </div>
+                        ${hasMatch ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-slate-900 shrink-0">Coincidencia</span>` : ''}
+                    </button>
+                `;
+            }).join('');
+
+            document.getElementById('dimension-nav-list').innerHTML = listHtml;
+        }
+
+        function renderConceptCellBody(valObj, conceptMeta) {
+            // 1. Typology (Multi-group structured list)
+            if (valObj.groups) {
+                return `
+                    <div class="space-y-4">
+                        ${valObj.groups.map(grp => `
+                            <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm">
+                                <h5 class="text-xs sm:text-sm font-bold text-slate-900 mb-2.5 flex items-start gap-2">
+                                    <i class="fa-solid fa-folder-tree text-blue-600 mt-1 shrink-0"></i>
+                                    <span>${highlightText(grp.title)}</span>
+                                </h5>
+                                <ul class="space-y-2 pl-1">
+                                    ${grp.items.map(item => `
+                                        <li class="text-xs sm:text-sm text-slate-700 leading-relaxed flex items-start gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0"></span>
+                                            <span>${highlightText(item)}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            // 2. Pros & Cons (Ventajas y Desventajas)
+            if (valObj.pros && valObj.cons) {
+                return `
+                    <div class="space-y-3.5">
+                        <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+                            <div class="flex items-center gap-2 text-emerald-800 font-bold text-xs uppercase tracking-wider mb-1.5">
+                                <i class="fa-solid fa-circle-plus text-emerald-600"></i>
+                                <span>Ventajas</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">${highlightText(valObj.pros)}</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-rose-50/70 border border-rose-200">
+                            <div class="flex items-center gap-2 text-rose-800 font-bold text-xs uppercase tracking-wider mb-1.5">
+                                <i class="fa-solid fa-circle-minus text-rose-600"></i>
+                                <span>Desventajas</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">${highlightText(valObj.cons)}</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 3. Standard Rich Text + Dimension-Specific Visual Extras (Scope meter, Geography tags, Era badges, Company badges)
+            let extraVisualHtml = '';
+
+            if (valObj.meterLevel) {
+                extraVisualHtml += `
+                    <div class="mb-4 p-3 rounded-xl bg-white border border-slate-200/80">
+                        <div class="flex items-center justify-between text-[11px] font-bold text-slate-600 mb-1.5">
+                            <span>Horizonte: <strong class="text-slate-900">${valObj.horizon}</strong></span>
+                            <span class="text-blue-700">Amplitud Estratégica</span>
+                        </div>
+                        <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-indigo-600" style="width: ${valObj.meterLevel}%"></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (valObj.yearBadge) {
+                extraVisualHtml += `
+                    <div class="mb-3 inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold">
+                        <i class="fa-solid fa-calendar-check text-amber-600"></i>
+                        <span>Hito Fundacional: ${valObj.yearBadge}</span>
+                    </div>
+                `;
+            }
+
+            if (valObj.locations) {
+                extraVisualHtml += `
+                    <div class="flex flex-wrap gap-1.5 mb-3">
+                        ${valObj.locations.map(loc => `
+                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-800 shadow-sm">
+                                ${loc}
+                            </span>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            if (valObj.eraSpan) {
+                extraVisualHtml += `
+                    <div class="mb-3 p-2.5 rounded-xl bg-slate-900 text-white flex items-center justify-between text-xs">
+                        <span class="text-slate-400 font-medium">Período Clave:</span>
+                        <span class="font-bold text-cyan-300"><i class="fa-regular fa-clock mr-1"></i> ${valObj.eraSpan}</span>
+                    </div>
+                `;
+            }
+
+            if (valObj.orgCards) {
+                return `
+                    <div class="space-y-3">
+                        ${valObj.orgCards.map(card => `
+                            <div class="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md transition-all flex items-center gap-3.5">
+                                ${ORG_LOGOS[card.logoKey] || ''}
+                                <div class="min-w-0">
+                                    <div class="text-xs sm:text-sm font-extrabold text-slate-900 leading-snug">
+                                        ${highlightText(card.title)}
+                                    </div>
+                                    <div class="text-xs font-semibold text-blue-700 mt-1">
+                                        ${highlightText(card.citation)}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            return `
+                ${extraVisualHtml}
+                <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed font-normal">
+                    ${highlightText(valObj.text)}
+                </p>
+            `;
+        }
+
+        function renderExplorerStage() {
+            const ds = activeDataset;
+            const dim = ds.dimensions[currentDimIndex];
+            const total = ds.dimensions.length;
+            const prevIdx = (currentDimIndex - 1 + total) % total;
+            const nextIdx = (currentDimIndex + 1) % total;
+
+            const gridColsClass = (columnSpotlight === 'all') ? 'grid-cols-1 xl:grid-cols-3' : 'grid-cols-1 max-w-3xl mx-auto';
+
+            const cardsHtml = ds.concepts.map((concept, cIdx) => {
+                if (columnSpotlight !== 'all' && columnSpotlight !== cIdx) return '';
+                const valObj = dim.values[cIdx];
+
+                return `
+                    <div class="rounded-2xl ${concept.softBg} border ${concept.borderCol} flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <div>
+                            <!-- Concept Column Top Header -->
+                            <div class="p-4 bg-gradient-to-r ${concept.headerBg} text-white flex items-center justify-between">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center text-sm">
+                                        <i class="${concept.icon}"></i>
+                                    </span>
+                                    <div>
+                                        <span class="text-[10px] uppercase tracking-widest text-white/75 block font-semibold">${concept.badge}</span>
+                                        <h4 class="text-base sm:text-lg font-extrabold leading-tight">${concept.name}</h4>
+                                    </div>
+                                </div>
+                                <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/90 text-xs">
+                                    <i class="${valObj.visualIcon || 'fa-solid fa-star'}"></i>
+                                </span>
+                            </div>
+
+                            <!-- Visual Highlight Tag -->
+                            <div class="px-5 pt-4 pb-2">
+                                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${concept.badgeClass}">
+                                    <i class="${valObj.visualIcon || 'fa-solid fa-tag'}"></i>
+                                    <span>${valObj.highlightTag}</span>
+                                </div>
+                            </div>
+
+                            <!-- Main Academic Content -->
+                            <div class="p-5 pt-2">
+                                ${renderConceptCellBody(valObj, concept)}
+                            </div>
+                        </div>
+
+                        <!-- Card Bottom Visual Synthesis Strip -->
+                        <div class="px-5 py-3 bg-white/80 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-500">
+                            <span>Dimensión ${dim.number}: <strong>${dim.name}</strong></span>
+                            <span class="font-semibold text-slate-700">${concept.fullLabel}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const stageHtml = `
+                <!-- Dimension Visual Banner with Stock Photo -->
+                <div class="relative h-48 sm:h-56 bg-slate-900 overflow-hidden">
+                    <img src="${dim.image}" alt="${dim.name}" class="w-full h-full object-cover opacity-40"
+                         onerror="this.src='https://placehold.co/1200x400/0f172a/38bdf8?text=${encodeURIComponent(dim.name)}'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/65 to-transparent"></div>
+
+                    <!-- Top Prev/Next Controls inside Stage -->
+                    <div class="absolute top-4 left-5 right-5 flex items-center justify-between">
+                        <span class="px-3 py-1 rounded-full bg-blue-600/90 text-white text-xs font-bold uppercase tracking-wider shadow">
+                            Dimensión ${dim.number} de ${total}
+                        </span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="selectDimension(${prevIdx})" class="px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-semibold border border-white/15 backdrop-blur-md transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-chevron-left"></i> Anterior
+                            </button>
+                            <button onclick="selectDimension(${nextIdx})" class="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow transition-all flex items-center gap-1.5">
+                                Siguiente <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dimension Title & Subtitle -->
+                    <div class="absolute bottom-4 left-6 right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-white flex items-center justify-center text-xl shrink-0 shadow-lg">
+                                <i class="${dim.icon}"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl sm:text-3xl font-extrabold text-white tracking-tight">${highlightText(dim.name)}</h2>
+                                <p class="text-xs sm:text-sm text-slate-300 mt-0.5">${dim.visualSubtitle}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Quick-Contrast Diagram Bar for the Dimension -->
+                <div class="bg-slate-900 text-white px-6 py-3.5 border-b border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-3">
+                    ${ds.concepts.map((c, i) => `
+                        <div class="flex items-center gap-2.5 text-xs bg-white/5 rounded-xl px-3 py-2 border border-white/10">
+                            <i class="${c.icon} text-blue-400 shrink-0"></i>
+                            <div class="truncate">
+                                <span class="font-bold text-white">${c.name}:</span>
+                                <span class="text-slate-300 ml-1">${dim.visualNotes[i]}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- 3 Concept Comparison Cards Grid -->
+                <div class="p-5 sm:p-7">
+                    <div class="grid ${gridColsClass} gap-5">
+                        ${cardsHtml}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('explorer-stage-card').innerHTML = stageHtml;
+        }
+
+        function renderFullMatrix() {
+            const ds = activeDataset;
+            const rowsHtml = ds.dimensions.map((dim, dIdx) => {
+                // If search query is active, filter dimensions that match
+                if (searchQuery.length >= 2) {
+                    const serialized = JSON.stringify(dim).toLowerCase();
+                    if (!serialized.includes(searchQuery.toLowerCase())) {
+                        return '';
+                    }
+                }
+
+                const gridColsClass = (columnSpotlight === 'all') ? 'grid-cols-1 lg:grid-cols-3' : 'grid-cols-1 max-w-3xl mx-auto';
+
+                return `
+                    <div class="p-5 sm:p-7 hover:bg-slate-50/60 transition-colors">
+                        <!-- Dimension Row Header with Visual Thumbnail -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-5 border-b border-slate-200">
+                            <div class="flex items-center gap-4">
+                                <div class="relative w-16 h-16 rounded-2xl overflow-hidden shrink-0 shadow-md bg-slate-900">
+                                    <img src="${dim.image}" alt="${dim.name}" class="w-full h-full object-cover opacity-75"
+                                         onerror="this.src='https://placehold.co/100x100/1e3a8a/ffffff?text=${dim.number}'">
+                                    <div class="absolute inset-0 bg-slate-900/40 flex items-center justify-center text-white text-lg">
+                                        <i class="${dim.icon}"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Dimensión Comparativa ${dim.number}</span>
+                                    <h4 class="text-lg sm:text-xl font-extrabold text-slate-900">${highlightText(dim.name)}</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5">${dim.visualSubtitle}</p>
+                                </div>
+                            </div>
+                            <button onclick="selectDimension(${dIdx}); setDisplayMode('explorer');"
+                                    class="self-start sm:self-center px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-xs font-semibold border border-slate-200 transition-colors flex items-center gap-1.5 shrink-0">
+                                <i class="fa-solid fa-expand"></i> Enfocar dimensión
+                            </button>
+                        </div>
+
+                        <!-- 3 Concept Columns -->
+                        <div class="grid ${gridColsClass} gap-5">
+                            ${ds.concepts.map((concept, cIdx) => {
+                                if (columnSpotlight !== 'all' && columnSpotlight !== cIdx) return '';
+                                const valObj = dim.values[cIdx];
+                                return `
+                                    <div class="rounded-2xl ${concept.softBg} border ${concept.borderCol} p-5 flex flex-col justify-between">
+                                        <div>
+                                            <div class="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-200/80">
+                                                <div class="flex items-center gap-2">
+                                                    <span class="w-7 h-7 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs">
+                                                        <i class="${concept.icon}"></i>
+                                                    </span>
+                                                    <span class="font-extrabold text-sm sm:text-base text-slate-900">${concept.name}</span>
+                                                </div>
+                                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold ${concept.badgeClass}">
+                                                    ${valObj.highlightTag}
+                                                </span>
+                                            </div>
+                                            ${renderConceptCellBody(valObj, concept)}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('matrix-rows-container').innerHTML = rowsHtml || `
+                <div class="p-12 text-center">
+                    <i class="fa-solid fa-magnifying-glass text-3xl text-slate-300 mb-3"></i>
+                    <p class="text-base font-bold text-slate-700">No se encontraron dimensiones con "${searchQuery}"</p>
+                    <button onclick="clearSearch()" class="mt-3 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Limpiar búsqueda</button>
+                </div>
+            `;
+        }
+
+        function renderTimelineSynthesis() {
+            const ds = activeDataset;
+            const isC1 = (ds.id === 'cuadro1');
+
+            const html = `
+                <!-- Historical & Epistemological Evolution Card -->
+                <div class="bg-white rounded-3xl shadow-lg border border-slate-200/90 overflow-hidden">
+                    <div class="p-6 sm:p-8 bg-slate-900 text-white">
+                        <span class="text-xs font-bold uppercase tracking-widest text-blue-400">Evolución Histórica y Geográfica</span>
+                        <h3 class="text-xl sm:text-2xl font-extrabold mt-1">Línea de Tiempo Conceptual: ${ds.title}</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1">Síntesis visual de autoría, lugar de acuñación, períodos de auge y casos organizacionales.</p>
+                    </div>
+
+                    <div class="p-6 sm:p-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 relative">
+                            ${ds.concepts.map((c, idx) => {
+                                const authDim = ds.dimensions.find(d => d.name.includes('Autoría'));
+                                const locDim = ds.dimensions.find(d => d.name.includes('Lugar'));
+                                const eraDim = ds.dimensions.find(d => d.name.includes('Período'));
+                                const orgDim = ds.dimensions.find(d => d.name.includes('Ejemplos'));
+
+                                return `
+                                    <div class="rounded-3xl ${c.softBg} border-2 ${c.borderCol} p-6 flex flex-col justify-between relative">
+                                        <div>
+                                            <div class="flex items-center justify-between mb-4">
+                                                <span class="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-slate-900 text-white">
+                                                    Etapa ${idx + 1} · ${c.name}
+                                                </span>
+                                                <i class="${c.icon} text-2xl text-slate-700"></i>
+                                            </div>
+
+                                            <h4 class="text-xl font-extrabold text-slate-900 mb-1">${c.fullLabel}</h4>
+                                            <p class="text-xs font-semibold text-blue-700 mb-4">${c.badge}</p>
+
+                                            <div class="space-y-4 text-xs sm:text-sm">
+                                                <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80">
+                                                    <div class="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
+                                                        <i class="fa-solid fa-feather text-blue-600"></i> Autoría y Origen
+                                                    </div>
+                                                    <p class="text-slate-600 text-xs leading-relaxed">${authDim.values[idx].text}</p>
+                                                </div>
+
+                                                <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80">
+                                                    <div class="font-bold text-slate-900 mb-1.5 flex items-center gap-1.5">
+                                                        <i class="fa-solid fa-earth-americas text-emerald-600"></i> Lugar de Acuñación
+                                                    </div>
+                                                    <div class="flex flex-wrap gap-1 mb-1.5">
+                                                        ${locDim.values[idx].locations.map(l => `<span class="px-2 py-0.5 rounded bg-slate-100 text-[11px] font-semibold">${l}</span>`).join('')}
+                                                    </div>
+                                                    <p class="text-slate-500 text-[11px]">${locDim.values[idx].text}</p>
+                                                </div>
+
+                                                <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80">
+                                                    <div class="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
+                                                        <i class="fa-solid fa-clock text-amber-600"></i> Período de Auge
+                                                    </div>
+                                                    <p class="text-slate-600 text-xs leading-relaxed">${eraDim.values[idx].text}</p>
+                                                </div>
+
+                                                <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80">
+                                                    <div class="font-bold text-slate-900 mb-2 flex items-center gap-1.5">
+                                                        <i class="fa-solid fa-building text-indigo-600"></i> Ejemplos Organizacionales
+                                                    </div>
+                                                    <div class="space-y-2">
+                                                        ${(orgDim.values[idx].orgCards || []).map(card => `
+                                                            <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 border border-slate-200/80">
+                                                                ${ORG_LOGOS[card.logoKey] || ''}
+                                                                <div class="min-w-0">
+                                                                    <div class="text-xs font-bold text-slate-900 leading-snug">${card.title}</div>
+                                                                    <div class="text-[11px] font-semibold text-blue-700">${card.citation}</div>
+                                                                </div>
+                                                            </div>
+                                                        `).join('')}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('timeline-synthesis-container').innerHTML = html;
+        }
+
+        function renderActiveViewContent() {
+            if (displayMode === 'explorer') {
+                renderExplorerStage();
+            } else if (displayMode === 'matrix') {
+                renderFullMatrix();
+            } else if (displayMode === 'timeline') {
+                renderTimelineSynthesis();
+            }
+        }
+
+        function renderReferencesSection() {
+            const refs = activeDataset.references;
+            document.getElementById('refs-count-badge').textContent = `${refs.length} Referencias APA`;
+
+            const refsHtml = refs.map((ref, idx) => {
+                const fullCitation = `${ref.authors} ${ref.title} ${ref.source} ${ref.url}`;
+                return `
+                    <div class="p-4 rounded-2xl bg-slate-50 hover:bg-blue-50/40 border border-slate-200/90 transition-all flex flex-col justify-between gap-3 group">
+                        <div class="flex items-start gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-200 group-hover:bg-blue-600 group-hover:text-white text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 transition-colors">
+                                ${idx + 1}
+                            </span>
+                            <div class="text-xs sm:text-sm text-slate-700 leading-relaxed break-words min-w-0">
+                                <span class="font-bold text-slate-900">${highlightText(ref.authors)}</span>
+                                <em class="text-slate-800"> ${highlightText(ref.title)}</em>
+                                <span> ${highlightText(ref.source)}</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-200/60 pl-10">
+                            <a href="${ref.url}" target="_blank" rel="noopener noreferrer"
+                               class="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1.5 truncate max-w-[75%]">
+                                <i class="fa-solid fa-up-right-from-square text-[10px]"></i>
+                                <span class="truncate">${ref.url}</span>
+                            </a>
+                            <button onclick="copyCitationText(${idx})"
+                                    class="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-900 text-slate-600 hover:text-white border border-slate-200 text-[11px] font-semibold transition-colors flex items-center gap-1 shrink-0">
+                                <i class="fa-regular fa-copy"></i> Copiar APA
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('references-list-grid').innerHTML = refsHtml;
+        }
+
+        function copyCitationText(idx) {
+            const ref = activeDataset.references[idx];
+            const textToCopy = `${ref.authors} ${ref.title} ${ref.source} ${ref.url}`;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast('Cita APA copiada al portapapeles');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 2800);
+        }
+
+        function scrollToReferences() {
+            const el = document.getElementById('references-section');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Keyboard Navigation Support (Left/Right Arrows for Dimension Explorer)
+        window.addEventListener('keydown', (e) => {
+            if (currentView === 'home' || displayMode !== 'explorer') return;
+            if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+
+            const total = activeDataset.dimensions.length;
+            if (e.key === 'ArrowRight') {
+                selectDimension((currentDimIndex + 1) % total);
+            } else if (e.key === 'ArrowLeft') {
+                selectDimension((currentDimIndex - 1 + total) % total);
+            }
+        });
+    </script>
+</body>
+</html>
