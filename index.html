@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerencia de Talento Humano | Primera Asignación - Postgrado en Administración (IIA - ULA)</title>
+    <title>Gerencia de Recursos Humanos | Maestría en Administración (IIA - ULA)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -118,15 +118,6 @@
             box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.4);
         }
 
-        /* Highlight search matches */
-        mark.search-highlight {
-            background-color: #fef08a;
-            color: #0f172a;
-            padding: 0 3px;
-            border-radius: 3px;
-            font-weight: 600;
-        }
-
         @media print {
             .no-print {
                 display: none !important;
@@ -138,47 +129,46 @@
 
     <!-- TOP EXECUTIVE NAVIGATION BAR -->
     <header class="sticky top-0 z-50 glass-dark text-white shadow-lg no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 min-h-[4rem] flex items-center justify-between gap-4">
             <!-- Brand / Home Trigger -->
-            <button onclick="navigateTo('home')" class="flex items-center gap-3 text-left group focus:outline-none">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-building-user text-white text-lg"></i>
-                </div>
+            <button onclick="navigateTo('home')" class="flex items-center gap-3 text-left group focus:outline-none shrink-0">
+                <img src="https://adrianagonzalez9.wordpress.com/wp-content/uploads/2026/10/logo-iia.jpg"
+                     alt="Logo IIA ULA"
+                     class="w-10 h-10 rounded-full object-cover shadow-md border border-white/20 group-hover:scale-105 transition-transform bg-white"
+                     onerror="this.src='https://placehold.co/80x80/1e3a8a/ffffff?text=IIA'">
                 <div>
-                    <span class="text-[10px] sm:text-[11px] uppercase tracking-widest text-blue-300 font-semibold block leading-none">ULA · IIA · Postgrado en Administración (Mención Gerencia)</span>
+                    <span class="text-[10px] sm:text-[11px] uppercase tracking-widest text-blue-300 font-semibold block leading-none">ULA · IIA · Maestría en Administración (Mención Gerencia)</span>
                     <span class="text-sm sm:text-base font-bold tracking-tight text-white flex items-center gap-2 mt-0.5">
-                        Gerencia de Talento Humano
+                        Gerencia de Recursos Humanos
                     </span>
                 </div>
             </button>
 
             <!-- Navigation Pills -->
-            <nav class="flex items-center gap-1.5 sm:gap-2 bg-slate-800/90 p-1.5 rounded-xl border border-slate-700/80">
-                <button id="nav-home" onclick="navigateTo('home')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-blue-600 text-white shadow-sm">
+            <nav class="flex items-center gap-2 sm:gap-3 bg-slate-800/90 p-1.5 rounded-xl border border-slate-700/80 flex-grow max-w-2xl">
+                <button id="nav-home" onclick="navigateTo('home')" class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-2 bg-blue-600 text-white shadow-sm shrink-0">
                     <i class="fa-solid fa-house"></i>
                     <span class="hidden md:inline">Portada Principal</span>
                 </button>
-                <button id="nav-cuadro1" onclick="navigateTo('cuadro1')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/60">
-                    <i class="fa-solid fa-users-gear text-blue-400"></i>
-                    <span>Cuadro 1: <span class="hidden sm:inline">Recurso · Capital · Talento</span></span>
+                <button id="nav-cuadro1" onclick="navigateTo('cuadro1')" class="flex-1 px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-2.5 text-slate-300 hover:text-white hover:bg-slate-700/60 text-left">
+                    <i class="fa-solid fa-users-gear text-blue-400 shrink-0 hidden sm:inline-block"></i>
+                    <div class="leading-tight">
+                        <span class="font-bold block text-xs sm:text-sm">Cuadro Comparativo 1:</span>
+                        <span class="text-[11px] sm:text-xs opacity-90 block">Recurso - Capital - Talento</span>
+                    </div>
                 </button>
-                <button id="nav-cuadro2" onclick="navigateTo('cuadro2')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/60">
-                    <i class="fa-solid fa-sitemap text-emerald-400"></i>
-                    <span>Cuadro 2: <span class="hidden sm:inline">Administración · Gerencia · Gestión</span></span>
+                <button id="nav-cuadro2" onclick="navigateTo('cuadro2')" class="flex-1 px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-2.5 text-slate-300 hover:text-white hover:bg-slate-700/60 text-left">
+                    <i class="fa-solid fa-sitemap text-emerald-400 shrink-0 hidden sm:inline-block"></i>
+                    <div class="leading-tight">
+                        <span class="font-bold block text-xs sm:text-sm">Cuadro Comparativo 2:</span>
+                        <span class="text-[11px] sm:text-xs opacity-90 block">Administración - Gerencia - Gestión</span>
+                    </div>
                 </button>
             </nav>
 
-            <!-- Quick Reference / Print Utility -->
-            <div class="hidden lg:flex items-center gap-2">
-                <div class="px-3 py-1 rounded-lg bg-slate-800/90 border border-slate-700 text-[11px] text-slate-300 flex items-center gap-1.5">
-                    <i class="fa-solid fa-user-graduate text-blue-400"></i>
-                    <span class="font-semibold text-white">Lcda. Adriana C. Gonzalez I.</span>
-                </div>
-                <button onclick="scrollToReferences()" id="btn-top-refs" class="hidden px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 transition-all items-center gap-1.5">
-                    <i class="fa-solid fa-book-bookmark text-amber-400"></i>
-                    <span>Referencias APA</span>
-                </button>
-                <button onclick="window.print()" title="Imprimir o guardar vista en PDF" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors">
+            <!-- Print Utility -->
+            <div class="hidden lg:flex items-center gap-2 shrink-0">
+                <button onclick="window.print()" title="Imprimir o guardar vista en PDF" class="p-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors">
                     <i class="fa-solid fa-print"></i>
                 </button>
             </div>
@@ -194,85 +184,56 @@
         <section id="view-home" class="view-fade">
             <!-- Hero Section with Corporate Stock Background -->
             <div class="relative bg-slate-900 text-white overflow-hidden">
-                <!-- Background Corporate Image -->
+                <!-- Background Corporate Image (Increased visibility & lighter overlay) -->
                 <div class="absolute inset-0">
                     <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=85" 
                          alt="Arquitectura Corporativa Moderna" 
-                         class="w-full h-full object-cover opacity-30 scale-105"
-                         onerror="this.src='https://placehold.co/1920x1080/0f172a/38bdf8?text=Gerencia+de+Talento+Humano'">
-                    <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-blue-950/75"></div>
-                    <div class="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:32px_32px] opacity-15"></div>
+                         class="w-full h-full object-cover opacity-60 scale-105"
+                         onerror="this.src='https://placehold.co/1920x1080/0f172a/38bdf8?text=Gerencia+de+Recursos+Humanos'">
+                    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/65 to-blue-950/50"></div>
                 </div>
 
                 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 lg:pt-16 lg:pb-24">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                        <!-- Left Column: Academic Heading & Description -->
+                        <!-- Left Column: Heading & Description -->
                         <div class="lg:col-span-7">
-                            <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-xs sm:text-sm font-medium mb-5">
-                                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-                                <span>Primera Asignación · Unidad Curricular: Gerencia de Talento Humano</span>
-                            </div>
-
-                            <p class="text-xs sm:text-sm uppercase tracking-widest text-cyan-300 font-bold mb-2">
+                            <p class="text-xs sm:text-sm uppercase tracking-widest text-cyan-300 font-bold mb-2 drop-shadow">
                                 Universidad de Los Andes · Instituto de Investigaciones en Administración (IIA)
                             </p>
-                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-4">
-                                Gerencia de <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300">Talento Humano</span>
+                            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-4 drop-shadow-sm">
+                                Gerencia de <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-200 to-indigo-200">Recursos Humanos</span>
                             </h1>
                             <p class="text-sm sm:text-base text-blue-200 font-semibold mb-4">
-                                Postgrado en Administración · Mención Gerencia
+                                Maestría en Administración · Mención Gerencia
                             </p>
-                            <p class="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal mb-8">
-                                Análisis epistemológico, estratégico y organizacional a través de dos cuadros comparativos. En los mismos se explora la evolución conceptual desde el paradigma del recurso hasta el talento, y la articulación directiva entre administración, gerencia y gestión.
+                            <p class="text-sm sm:text-base lg:text-lg text-slate-100 leading-relaxed font-normal">
+                                Estudio comparativo a través de dos cuadros interactivos sobre la evolución conceptual desde el paradigma del recurso hasta el talento, y la articulación directiva entre administración, gerencia y gestión.
                             </p>
-
-                            <!-- Quick Academic Metadata Pills -->
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
-                                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5">
-                                    <div class="text-blue-400 text-xs font-semibold uppercase tracking-wider">Asignación I</div>
-                                    <div class="text-xl font-bold text-white mt-0.5">2 Cuadros</div>
-                                    <div class="text-[11px] text-slate-400">6 Conceptos Clave</div>
-                                </div>
-                                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5">
-                                    <div class="text-cyan-400 text-xs font-semibold uppercase tracking-wider">Análisis</div>
-                                    <div class="text-xl font-bold text-white mt-0.5">21 Dimensiones</div>
-                                    <div class="text-[11px] text-slate-400">Comparación Rigurosa</div>
-                                </div>
-                                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5">
-                                    <div class="text-emerald-400 text-xs font-semibold uppercase tracking-wider">Visualización</div>
-                                    <div class="text-xl font-bold text-white mt-0.5">3 Vistas</div>
-                                    <div class="text-[11px] text-slate-400">Matriz, Explorador y Síntesis</div>
-                                </div>
-                                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5">
-                                    <div class="text-amber-400 text-xs font-semibold uppercase tracking-wider">Sustento</div>
-                                    <div class="text-xl font-bold text-white mt-0.5">Referencias</div>
-                                    <div class="text-[11px] text-slate-400">Enlaces Verificados</div>
-                                </div>
-                            </div>
                         </div>
 
                         <!-- Right Column: Prominent Author & Institutional Credential Card -->
                         <div class="lg:col-span-5">
-                            <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 sm:p-7 shadow-2xl relative overflow-hidden">
+                            <div class="bg-slate-900/75 backdrop-blur-xl border border-white/25 rounded-3xl p-6 sm:p-7 shadow-2xl relative overflow-hidden">
                                 <div class="absolute -top-12 -right-12 w-36 h-36 bg-blue-500/20 rounded-full blur-2xl pointer-events-none"></div>
                                 
                                 <!-- Institutional Header -->
                                 <div class="flex items-center gap-3.5 pb-5 mb-5 border-b border-white/15">
-                                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center text-white text-xl font-extrabold shadow-lg shrink-0">
-                                        <i class="fa-solid fa-building-columns"></i>
-                                    </div>
+                                    <img src="https://adrianagonzalez9.wordpress.com/wp-content/uploads/2026/10/logo-iia.jpg"
+                                         alt="Logo IIA ULA"
+                                         class="w-12 h-12 rounded-full object-cover shadow-lg border border-white/25 shrink-0 bg-white"
+                                         onerror="this.src='https://placehold.co/80x80/1e3a8a/ffffff?text=IIA'">
                                     <div>
                                         <span class="text-[11px] font-bold uppercase tracking-widest text-blue-300 block">Universidad de Los Andes</span>
                                         <h2 class="text-sm sm:text-base font-extrabold text-white leading-snug">
                                             Instituto de Investigaciones en Administración (IIA)
                                         </h2>
-                                        <p class="text-xs text-slate-300 mt-0.5">Postgrado en Administración, Mención Gerencia</p>
+                                        <p class="text-xs text-slate-300 mt-0.5">Maestría en Administración, Mención Gerencia</p>
                                     </div>
                                 </div>
 
                                 <!-- Highlighted Author Info -->
-                                <div class="bg-slate-950/60 border border-blue-400/30 rounded-2xl p-4 mb-4">
-                                    <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-400 block mb-1">Autora de la Asignación</span>
+                                <div class="bg-slate-950/65 border border-blue-400/30 rounded-2xl p-4 mb-4">
+                                    <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-400 block mb-1">Autora</span>
                                     <div class="flex items-center gap-3">
                                         <div class="w-10 h-10 rounded-xl bg-blue-600/30 border border-blue-400/40 text-blue-200 flex items-center justify-center font-bold text-base shrink-0">
                                             <i class="fa-solid fa-user-graduate"></i>
@@ -288,19 +249,13 @@
                                     </div>
                                 </div>
 
-                                <!-- Academic Metadata Details -->
+                                <!-- Metadata Details -->
                                 <div class="space-y-2.5 text-xs sm:text-sm">
                                     <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-white/5 border border-white/10">
                                         <span class="text-slate-300 flex items-center gap-2">
                                             <i class="fa-solid fa-book text-blue-400"></i> Unidad Curricular:
                                         </span>
-                                        <span class="font-bold text-white text-right">Gerencia de Talento Humano</span>
-                                    </div>
-                                    <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-white/5 border border-white/10">
-                                        <span class="text-slate-300 flex items-center gap-2">
-                                            <i class="fa-solid fa-file-signature text-emerald-400"></i> Evaluación:
-                                        </span>
-                                        <span class="font-bold text-white text-right">Primera Asignación</span>
+                                        <span class="font-bold text-white text-right">Gerencia de Recursos Humanos</span>
                                     </div>
                                     <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-white/5 border border-white/10">
                                         <span class="text-slate-300 flex items-center gap-2">
@@ -317,19 +272,16 @@
 
             <!-- MAIN PORTAL CARDS SECTION (THE TWO ATTRACTIVE BUTTONS/LINKS) -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 pb-20 relative z-10">
-                <div class="flex items-center justify-between mb-6 bg-white/90 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-sm border border-slate-200/80">
+                <div class="flex items-center justify-between mb-6 bg-white/95 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-sm border border-slate-200/80">
                     <div class="flex items-center gap-3">
                         <span class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
                             <i class="fa-solid fa-compass"></i>
                         </span>
                         <div>
                             <h2 class="text-sm sm:text-base font-bold text-slate-900">Seleccione el Cuadro Comparativo a Explorar</h2>
-                            <p class="text-xs text-slate-500">Haga clic en cualquiera de las dos tarjetas principales para abrir su entorno interactivo dedicado</p>
+                            <p class="text-xs text-slate-500">Haga clic en cualquiera de las dos tarjetas principales para abrir su cuadro comparativo</p>
                         </div>
                     </div>
-                    <span class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-200">
-                        <i class="fa-solid fa-hand-pointer"></i> Navegación Interactiva
-                    </span>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -348,10 +300,10 @@
                                 <!-- Top Badges -->
                                 <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
                                     <span class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-600 text-white shadow-lg flex items-center gap-1.5">
-                                        <i class="fa-solid fa-layer-group"></i> Cuadro Comparativo I
+                                        <i class="fa-solid fa-layer-group"></i> Cuadro Comparativo 1
                                     </span>
                                     <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-900/80 text-blue-200 backdrop-blur-md border border-white/15">
-                                        10 Dimensiones · 15 Referencias
+                                        10 Dimensiones
                                     </span>
                                 </div>
 
@@ -367,7 +319,7 @@
                             <!-- Card Body -->
                             <div class="p-6 sm:p-8">
                                 <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                                    Contraste exhaustivo entre la visión sistémico-funcional del trabajador como <strong>insumo productivo</strong>, la teoría económica del <strong>acervo intangible de inversión</strong> y el paradigma estratégico-antropocéntrico de <strong>competencias y potencial superior</strong>.
+                                    Contraste entre la visión sistémico-funcional del trabajador como <strong>insumo productivo</strong>, la teoría económica del <strong>acervo intangible de inversión</strong> y el paradigma estratégico-antropocéntrico de <strong>competencias y potencial superior</strong>.
                                 </p>
 
                                 <!-- 3 Mini Concept Pills -->
@@ -397,8 +349,8 @@
                                     <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Concepto</span>
                                     <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Enfoque Administrativo</span>
                                     <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Alcance e Importancia</span>
-                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Tipologías (9-Box, Lepak & Snell)</span>
-                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Autoría, Auge y Casos (IBM, GS, BBVA)</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Tipologías</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Autoría, Auge y Ejemplos</span>
                                 </div>
                             </div>
                         </div>
@@ -432,10 +384,10 @@
                                 <!-- Top Badges -->
                                 <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
                                     <span class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-600 text-white shadow-lg flex items-center gap-1.5">
-                                        <i class="fa-solid fa-sitemap"></i> Cuadro Comparativo II
+                                        <i class="fa-solid fa-sitemap"></i> Cuadro Comparativo 2
                                     </span>
                                     <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-900/80 text-emerald-200 backdrop-blur-md border border-white/15">
-                                        11 Dimensiones · 15 Referencias
+                                        11 Dimensiones
                                     </span>
                                 </div>
 
@@ -451,7 +403,7 @@
                             <!-- Card Body -->
                             <div class="p-6 sm:p-8">
                                 <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                                    Delimitación epistemológica y práctica entre el diseño estructural-normativo de la <strong>administración</strong>, la conducción estratégica y decisoria de la <strong>gerencia</strong> y la acción dinámica, transversal y transformadora de la <strong>gestión</strong>.
+                                    Delimitación conceptual y práctica entre el diseño estructural-normativo de la <strong>administración</strong>, la conducción estratégica y decisoria de la <strong>gerencia</strong> y la acción dinámica, transversal y transformadora de la <strong>gestión</strong>.
                                 </p>
 
                                 <!-- 3 Mini Concept Pills -->
@@ -481,8 +433,8 @@
                                     <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Concepto</span>
                                     <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Vinculación con Personal</span>
                                     <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Enfoque y Rol del Responsable</span>
-                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Fases, Roles de Mintzberg y Despliegue</span>
-                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Tradición Anglosajona vs. Francófona</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Tipologías y Roles</span>
+                                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 font-medium">Autoría, Auge y Ejemplos</span>
                                 </div>
                             </div>
                         </div>
@@ -501,60 +453,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Synthesis Matrix Bridge (How Table 1 and Table 2 connect) -->
-                <div class="mt-12 bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/90">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
-                        <div>
-                            <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Articulación Teórico-Práctica · Gerencia de Talento Humano</span>
-                            <h3 class="text-xl font-bold text-slate-900 mt-1">Sinergia Epistemológica entre Ambos Cuadros Comparativos</h3>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slate-500 max-w-md">
-                            Correspondencia predominante entre la forma de concebir al ser humano (Cuadro I) y el modelo de conducción organizacional (Cuadro II).
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
-                            <div class="w-11 h-11 rounded-xl bg-slate-800 text-white flex items-center justify-center shrink-0 font-bold">
-                                <i class="fa-solid fa-clipboard-check"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Eje Normativo-Funcional</div>
-                                <h4 class="text-sm font-bold text-slate-900 mt-0.5">Administración de Recursos Humanos (ARH)</h4>
-                                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                                    Los <strong>recursos</strong> como insumos regulados por contratos y presupuestos requieren ser <strong>administrados</strong> mediante planificación, organización y control formal.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-blue-50/60 border border-blue-200/70">
-                            <div class="w-11 h-11 rounded-xl bg-blue-700 text-white flex items-center justify-center shrink-0 font-bold">
-                                <i class="fa-solid fa-sack-dollar"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold uppercase tracking-wider text-blue-700">Eje Directivo-Estratégico</div>
-                                <h4 class="text-sm font-bold text-slate-900 mt-0.5">Gerencia del Capital / Talento Humano (HCM)</h4>
-                                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                                    El gobierno del <strong>capital humano</strong> y las decisiones de inversión de alto nivel demandan <strong>gerencia</strong> ejecutiva, liderazgo estratégico y autoridad formal.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/70">
-                            <div class="w-11 h-11 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0 font-bold">
-                                <i class="fa-solid fa-bolt"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold uppercase tracking-wider text-emerald-700">Eje Dinámico-Transformacional</div>
-                                <h4 class="text-sm font-bold text-slate-900 mt-0.5">Gestión del Talento Humano (GTH)</h4>
-                                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                                    El <strong>talento humano</strong> (saber, saber hacer, saber analizar y hacer que ocurra) se dinamiza mediante una <strong>gestión</strong> transversal de procesos, cultura y competencias.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -562,26 +460,26 @@
              VIEW 2 & VIEW 3: DYNAMIC COMPARATIVE WORKSPACE (CUADRO 1 & CUADRO 2)
              ===================================================================== -->
         <section id="view-table-workspace" class="hidden view-fade">
-            <!-- Dynamic Hero Header for Active Table -->
+            <!-- Dynamic Hero Header for Active Table (Brighter Background Image & No Summary Boxes) -->
             <div id="table-hero" class="relative bg-slate-900 text-white overflow-hidden">
                 <div class="absolute inset-0">
-                    <img id="table-hero-img" src="" alt="Fondo Corporativo" class="w-full h-full object-cover opacity-30"
+                    <img id="table-hero-img" src="" alt="Fondo Corporativo" class="w-full h-full object-cover opacity-60"
                          onerror="this.src='https://placehold.co/1920x600/0f172a/ffffff?text=Cuadro+Comparativo'">
-                    <div id="table-hero-overlay" class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-blue-950/80"></div>
+                    <div id="table-hero-overlay" class="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/65 to-blue-950/50"></div>
                 </div>
 
                 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
                     <!-- Top Breadcrumb & Back to Home -->
                     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-                        <div class="flex items-center gap-2 text-xs sm:text-sm text-slate-300">
-                            <button onclick="navigateTo('home')" class="hover:text-white flex items-center gap-1.5 font-medium bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors">
+                        <div class="flex items-center gap-2 text-xs sm:text-sm text-slate-200">
+                            <button onclick="navigateTo('home')" class="hover:text-white flex items-center gap-1.5 font-medium bg-slate-900/60 hover:bg-slate-900/80 border border-white/15 px-3 py-1.5 rounded-lg transition-colors backdrop-blur-md">
                                 <i class="fa-solid fa-arrow-left"></i> Volver a la Portada
                             </button>
-                            <span class="text-slate-500">/</span>
-                            <span id="table-badge-crumb" class="text-blue-300 font-semibold">Cuadro Comparativo</span>
+                            <span class="text-slate-400">/</span>
+                            <span id="table-badge-crumb" class="text-blue-200 font-semibold drop-shadow">Cuadro Comparativo</span>
                         </div>
 
-                        <button id="table-switch-other" onclick="" class="text-xs sm:text-sm font-medium text-white bg-white/10 hover:bg-white/20 border border-white/15 px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2">
+                        <button id="table-switch-other" onclick="" class="text-xs sm:text-sm font-medium text-white bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2 backdrop-blur-md">
                             <span>Ir al otro cuadro comparativo</span>
                             <i class="fa-solid fa-arrow-right-arrow-left text-xs"></i>
                         </button>
@@ -589,59 +487,28 @@
 
                     <!-- Title & Subtitle -->
                     <div class="max-w-4xl">
-                        <span id="table-kicker" class="inline-block text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Módulo de Análisis Comparativo</span>
-                        <h1 id="table-main-title" class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3"></h1>
-                        <p id="table-main-desc" class="text-sm sm:text-base text-slate-300 leading-relaxed"></p>
+                        <span id="table-kicker" class="inline-block text-xs font-bold uppercase tracking-widest text-cyan-300 mb-2 drop-shadow">Cuadro Comparativo</span>
+                        <h1 id="table-main-title" class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 drop-shadow-sm"></h1>
+                        <p id="table-main-desc" class="text-sm sm:text-base text-slate-100 leading-relaxed drop-shadow-sm"></p>
                     </div>
-
-                    <!-- 3 Concept Header Summary Cards -->
-                    <div id="table-concept-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8"></div>
                 </div>
             </div>
 
-            <!-- Interactive Control Bar (Sticky Subheader) -->
+            <!-- Interactive Control Bar (Sticky Subheader - Only the 2 View Modes) -->
             <div class="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm no-print">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
-                    <!-- View Mode Switcher (Order: 1. Matriz Completa [Default], 2. Explorador Visual, 3. Línea de Tiempo) -->
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-center sm:justify-start">
+                    <!-- View Mode Switcher (1. Matriz Completa [Default], 2. Explorador Visual) -->
                     <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200/80 overflow-x-auto">
                         <button id="mode-btn-matrix" onclick="setDisplayMode('matrix')"
-                                class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-slate-900 text-white shadow-sm">
+                                class="px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-slate-900 text-white shadow-sm">
                             <i class="fa-solid fa-table text-blue-400"></i>
                             <span>Matriz Comparativa Completa</span>
                         </button>
                         <button id="mode-btn-explorer" onclick="setDisplayMode('explorer')"
-                                class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-slate-900">
+                                class="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-slate-900">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                             <span>Explorador Visual por Dimensión</span>
                         </button>
-                        <button id="mode-btn-timeline" onclick="setDisplayMode('timeline')"
-                                class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-slate-900">
-                            <i class="fa-solid fa-timeline"></i>
-                            <span>Línea de Tiempo y Síntesis</span>
-                        </button>
-                    </div>
-
-                    <!-- Filter Columns & Live Search -->
-                    <div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5">
-                        <!-- Column Spotlight Filter -->
-                        <div class="flex items-center gap-1 bg-slate-100 px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs">
-                            <span class="text-slate-500 font-medium mr-1 hidden xl:inline">Enfocar:</span>
-                            <button id="col-filter-all" onclick="setColumnSpotlight('all')" class="px-2 py-1 rounded-md font-bold bg-white text-slate-900 shadow-sm">Todos (3)</button>
-                            <button id="col-filter-0" onclick="setColumnSpotlight(0)" class="px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900"></button>
-                            <button id="col-filter-1" onclick="setColumnSpotlight(1)" class="px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900"></button>
-                            <button id="col-filter-2" onclick="setColumnSpotlight(2)" class="px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900"></button>
-                        </div>
-
-                        <!-- Search Input -->
-                        <div class="relative flex-grow sm:w-64">
-                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                            <input id="table-search-input" type="text" oninput="handleSearchInput(this.value)"
-                                   placeholder="Buscar autor, concepto, dimensión..."
-                                   class="w-full pl-8 pr-8 py-2 rounded-xl bg-slate-100 border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500">
-                            <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
-                                <i class="fa-solid fa-circle-xmark"></i>
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -654,12 +521,8 @@
                     <div class="bg-white rounded-3xl shadow-lg border border-slate-200/90 overflow-hidden">
                         <div class="p-5 sm:p-6 bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div>
-                                <span class="text-xs uppercase tracking-widest text-blue-400 font-bold">Vista Consolidada Lado a Lado</span>
-                                <h3 id="matrix-view-title" class="text-lg sm:text-xl font-bold mt-0.5">Matriz Comparativa Integral</h3>
-                            </div>
-                            <div class="flex items-center gap-2 text-xs text-slate-300">
-                                <i class="fa-solid fa-circle-info text-blue-400"></i>
-                                <span>Contiene el 100% del contenido académico y elementos visuales por dimensión</span>
+                                <span class="text-xs uppercase tracking-widest text-blue-400 font-bold">Vista Consolidada</span>
+                                <h3 id="matrix-view-title" class="text-lg sm:text-xl font-bold mt-0.5">Matriz Comparativa</h3>
                             </div>
                         </div>
 
@@ -696,13 +559,8 @@
                     </div>
                 </div>
 
-                <!-- MODE 3: LÍNEA DE TIEMPO Y SÍNTESIS VISUAL -->
-                <div id="container-mode-timeline" class="hidden space-y-8">
-                    <div id="timeline-synthesis-container"></div>
-                </div>
-
                 <!-- =====================================================================
-                     REFERENCIAS BIBLIOGRÁFICAS (APA 7) SECTION
+                     REFERENCIAS BIBLIOGRÁFICAS SECTION
                      ===================================================================== -->
                 <div id="references-section" class="mt-14 bg-white rounded-3xl shadow-md border border-slate-200/90 overflow-hidden scroll-mt-36">
                     <div class="p-6 sm:p-8 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -711,14 +569,8 @@
                                 <i class="fa-solid fa-book-open-reader"></i>
                             </div>
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Sustento Documental y Académico</span>
                                 <h2 class="text-xl sm:text-2xl font-extrabold text-white">Referencias Bibliográficas</h2>
                             </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span id="refs-count-badge" class="px-3 py-1.5 rounded-xl bg-white/10 text-xs font-semibold text-slate-200 border border-white/15">
-                                15 Fuentes Académicas
-                            </span>
                         </div>
                     </div>
 
@@ -751,38 +603,20 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800/80 py-8 no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4 text-xs">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
-                <div class="flex items-center gap-3">
-                    <span class="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center font-bold text-sm shrink-0">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </span>
-                    <div>
-                        <div class="text-white font-bold text-xs sm:text-sm">
-                            Primera Asignación · Unidad Curricular: "Gerencia de Talento Humano"
-                        </div>
-                        <div class="text-slate-400 text-[11px] sm:text-xs">
-                            Postgrado en Administración, Mención Gerencia · Instituto de Investigaciones en Administración (IIA) · Universidad de Los Andes
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-wrap items-center gap-3 bg-slate-900 px-4 py-2.5 rounded-xl border border-slate-800">
-                    <span class="text-white font-bold"><i class="fa-solid fa-feather-pointed text-blue-400 mr-1.5"></i>Autora: Lcda. Adriana C. Gonzalez I., C.I. 15.756.922</span>
-                    <span class="text-slate-600">|</span>
-                    <span class="text-amber-300 font-semibold"><i class="fa-regular fa-calendar mr-1"></i>15 de octubre de 2026</span>
-                </div>
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800/80 py-6 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs">
+            <div class="text-slate-300 font-medium">
+                Universidad de Los Andes (ULA) · Mérida, Venezuela
             </div>
-
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span class="text-slate-500">Universidad de Los Andes (ULA) · Mérida, Venezuela</span>
-                <div class="flex items-center gap-4">
-                    <button onclick="navigateTo('home')" class="hover:text-white transition-colors">Portada Principal</button>
-                    <span>·</span>
-                    <button onclick="navigateTo('cuadro1')" class="hover:text-white transition-colors">Cuadro 1 (Recurso, Capital, Talento)</button>
-                    <span>·</span>
-                    <button onclick="navigateTo('cuadro2')" class="hover:text-white transition-colors">Cuadro 2 (Administración, Gerencia, Gestión)</button>
-                </div>
+            <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                <button onclick="navigateTo('home')" class="hover:text-white transition-colors">Portada Principal</button>
+                <span>·</span>
+                <button onclick="navigateTo('cuadro1')" class="hover:text-white transition-colors">Cuadro Comparativo 1 (Recurso, Capital, Talento)</button>
+                <span>·</span>
+                <button onclick="navigateTo('cuadro2')" class="hover:text-white transition-colors">Cuadro Comparativo 2 (Administración, Gerencia, Gestión)</button>
+            </div>
+            <div class="text-slate-400 font-medium">
+                &copy; 2026 Lcda. Adriana Gonzalez
             </div>
         </div>
     </footer>
@@ -2015,31 +1849,26 @@
         let currentView = 'home'; // 'home' | 'cuadro1' | 'cuadro2'
         let activeDataset = DATA_CUADRO_1;
         let currentDimIndex = 0;
-        let displayMode = 'matrix'; // 'matrix' (default) | 'explorer' | 'timeline'
-        let columnSpotlight = 'all'; // 'all' | 0 | 1 | 2
-        let searchQuery = '';
+        let displayMode = 'matrix'; // 'matrix' (default) | 'explorer'
 
         function navigateTo(target) {
             currentView = target;
             const homeEl = document.getElementById('view-home');
             const workspaceEl = document.getElementById('view-table-workspace');
-            const topRefsBtn = document.getElementById('btn-top-refs');
 
             // Update Top Navbar Active States
             const navHome = document.getElementById('nav-home');
             const navC1 = document.getElementById('nav-cuadro1');
             const navC2 = document.getElementById('nav-cuadro2');
 
-            [navHome, navC1, navC2].forEach(btn => {
-                btn.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/60';
-            });
+            navHome.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/60 shrink-0';
+            navC1.className = 'flex-1 px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-2.5 text-slate-300 hover:text-white hover:bg-slate-700/60 text-left';
+            navC2.className = 'flex-1 px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-2.5 text-slate-300 hover:text-white hover:bg-slate-700/60 text-left';
 
             if (target === 'home') {
-                navHome.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-blue-600 text-white shadow-sm';
+                navHome.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-2 bg-blue-600 text-white shadow-sm shrink-0';
                 homeEl.classList.remove('hidden');
                 workspaceEl.classList.add('hidden');
-                topRefsBtn.classList.add('hidden');
-                topRefsBtn.classList.remove('flex');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 return;
             }
@@ -2047,21 +1876,15 @@
             // Switching to either Cuadro 1 or Cuadro 2
             activeDataset = (target === 'cuadro1') ? DATA_CUADRO_1 : DATA_CUADRO_2;
             currentDimIndex = 0;
-            columnSpotlight = 'all';
-            searchQuery = '';
-            document.getElementById('table-search-input').value = '';
-            document.getElementById('clear-search-btn').classList.add('hidden');
 
             if (target === 'cuadro1') {
-                navC1.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-blue-600 text-white shadow-sm';
+                navC1.className = 'flex-1 px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-2.5 bg-blue-600 text-white shadow-sm text-left';
             } else {
-                navC2.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-emerald-600 text-white shadow-sm';
+                navC2.className = 'flex-1 px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center justify-center gap-2.5 bg-emerald-600 text-white shadow-sm text-left';
             }
 
             homeEl.classList.add('hidden');
             workspaceEl.classList.remove('hidden');
-            topRefsBtn.classList.remove('hidden');
-            topRefsBtn.classList.add('flex');
 
             renderWorkspaceHeader();
             renderDimensionSidebar();
@@ -2087,96 +1910,22 @@
             const bottomSwitchBtn = document.getElementById('bottom-switch-table-btn');
             bottomSwitchBtn.onclick = () => navigateTo(ds.otherTableId);
             bottomSwitchBtn.innerHTML = `<span>${ds.otherTableName}</span> <i class="fa-solid fa-arrow-right"></i>`;
-
-            // Update Column Filter Buttons
-            ds.concepts.forEach((c, idx) => {
-                const btn = document.getElementById(`col-filter-${idx}`);
-                btn.textContent = c.name;
-            });
-            updateColumnFilterUI();
-
-            // Render 3 Concept Summary Cards in Hero
-            const cardsHtml = ds.concepts.map((c, idx) => `
-                <div onclick="setColumnSpotlight(${idx === columnSpotlight ? "'all'" : idx})" 
-                     class="cursor-pointer group bg-white/10 hover:bg-white/15 backdrop-blur-md border ${columnSpotlight === idx ? 'border-blue-400 ring-2 ring-blue-400/40' : 'border-white/15'} rounded-2xl p-4 transition-all">
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/15 text-white">
-                            ${c.badge}
-                        </span>
-                        <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-blue-300 group-hover:scale-110 transition-transform">
-                            <i class="${c.icon}"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-extrabold text-white">${c.fullLabel}</h3>
-                    <p class="text-xs text-slate-300 mt-1 leading-relaxed">${c.shortMeta}</p>
-                </div>
-            `).join('');
-            document.getElementById('table-concept-cards').innerHTML = cardsHtml;
         }
 
         function setDisplayMode(mode) {
             displayMode = mode;
-            const modes = ['explorer', 'matrix', 'timeline'];
+            const modes = ['matrix', 'explorer'];
             modes.forEach(m => {
                 const btn = document.getElementById(`mode-btn-${m}`);
                 const container = document.getElementById(`container-mode-${m}`);
                 if (m === mode) {
-                    btn.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-slate-900 text-white shadow-sm';
+                    btn.className = 'px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-slate-900 text-white shadow-sm';
                     container.classList.remove('hidden');
                 } else {
-                    btn.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-slate-900';
+                    btn.className = 'px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-slate-900';
                     container.classList.add('hidden');
                 }
             });
-            renderActiveViewContent();
-        }
-
-        function setColumnSpotlight(col) {
-            columnSpotlight = col;
-            updateColumnFilterUI();
-            renderWorkspaceHeader();
-            renderActiveViewContent();
-        }
-
-        function updateColumnFilterUI() {
-            const allBtn = document.getElementById('col-filter-all');
-            allBtn.className = (columnSpotlight === 'all')
-                ? 'px-2 py-1 rounded-md font-bold bg-white text-slate-900 shadow-sm'
-                : 'px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900';
-
-            [0, 1, 2].forEach(idx => {
-                const btn = document.getElementById(`col-filter-${idx}`);
-                btn.className = (columnSpotlight === idx)
-                    ? 'px-2 py-1 rounded-md font-bold bg-slate-900 text-white shadow-sm'
-                    : 'px-2 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900';
-            });
-        }
-
-        function highlightText(rawHtml) {
-            if (!searchQuery || searchQuery.trim().length < 2) return rawHtml;
-            const escaped = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(`(?![^<]*>)(${escaped})`, 'gi');
-            return rawHtml.replace(regex, '<mark class="search-highlight">$1</mark>');
-        }
-
-        function handleSearchInput(val) {
-            searchQuery = val.trim();
-            const clearBtn = document.getElementById('clear-search-btn');
-            if (searchQuery.length > 0) {
-                clearBtn.classList.remove('hidden');
-                // If user searches while in explorer mode, check if another dimension matches or switch to matrix for global overview if desired
-            } else {
-                clearBtn.classList.add('hidden');
-            }
-            renderDimensionSidebar();
-            renderActiveViewContent();
-        }
-
-        function clearSearch() {
-            searchQuery = '';
-            document.getElementById('table-search-input').value = '';
-            document.getElementById('clear-search-btn').classList.add('hidden');
-            renderDimensionSidebar();
             renderActiveViewContent();
         }
 
@@ -2193,12 +1942,6 @@
 
             const listHtml = ds.dimensions.map((dim, idx) => {
                 const isActive = (idx === currentDimIndex);
-                // Check if dimension matches search query
-                let hasMatch = false;
-                if (searchQuery.length >= 2) {
-                    const serialized = JSON.stringify(dim).toLowerCase();
-                    hasMatch = serialized.includes(searchQuery.toLowerCase());
-                }
 
                 return `
                     <button onclick="selectDimension(${idx})"
@@ -2212,7 +1955,6 @@
                                 <span class="text-xs sm:text-sm font-bold truncate block">${dim.name}</span>
                             </div>
                         </div>
-                        ${hasMatch ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-slate-900 shrink-0">Coincidencia</span>` : ''}
                     </button>
                 `;
             }).join('');
@@ -2229,13 +1971,13 @@
                             <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm">
                                 <h5 class="text-xs sm:text-sm font-bold text-slate-900 mb-2.5 flex items-start gap-2">
                                     <i class="fa-solid fa-folder-tree text-blue-600 mt-1 shrink-0"></i>
-                                    <span>${highlightText(grp.title)}</span>
+                                    <span>${grp.title}</span>
                                 </h5>
                                 <ul class="space-y-2 pl-1">
                                     ${grp.items.map(item => `
                                         <li class="text-xs sm:text-sm text-slate-700 leading-relaxed flex items-start gap-2">
                                             <span class="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0"></span>
-                                            <span>${highlightText(item)}</span>
+                                            <span>${item}</span>
                                         </li>
                                     `).join('')}
                                 </ul>
@@ -2254,20 +1996,20 @@
                                 <i class="fa-solid fa-circle-plus text-emerald-600"></i>
                                 <span>Ventajas</span>
                             </div>
-                            <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">${highlightText(valObj.pros)}</p>
+                            <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">${valObj.pros}</p>
                         </div>
                         <div class="p-4 rounded-2xl bg-rose-50/70 border border-rose-200">
                             <div class="flex items-center gap-2 text-rose-800 font-bold text-xs uppercase tracking-wider mb-1.5">
                                 <i class="fa-solid fa-circle-minus text-rose-600"></i>
                                 <span>Desventajas</span>
                             </div>
-                            <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">${highlightText(valObj.cons)}</p>
+                            <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">${valObj.cons}</p>
                         </div>
                     </div>
                 `;
             }
 
-            // 3. Standard Rich Text + Dimension-Specific Visual Extras (Scope meter, Geography tags, Era badges, Company badges)
+            // 3. Standard Rich Text + Dimension-Specific Visual Extras
             let extraVisualHtml = '';
 
             if (valObj.meterLevel) {
@@ -2322,10 +2064,10 @@
                                 ${ORG_LOGOS[card.logoKey] || ''}
                                 <div class="min-w-0">
                                     <div class="text-xs sm:text-sm font-extrabold text-slate-900 leading-snug">
-                                        ${highlightText(card.title)}
+                                        ${card.title}
                                     </div>
                                     <div class="text-xs font-semibold text-blue-700 mt-1">
-                                        ${highlightText(card.citation)}
+                                        ${card.citation}
                                     </div>
                                 </div>
                             </div>
@@ -2337,7 +2079,7 @@
             return `
                 ${extraVisualHtml}
                 <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed font-normal">
-                    ${highlightText(valObj.text)}
+                    ${valObj.text}
                 </p>
             `;
         }
@@ -2349,10 +2091,7 @@
             const prevIdx = (currentDimIndex - 1 + total) % total;
             const nextIdx = (currentDimIndex + 1) % total;
 
-            const gridColsClass = (columnSpotlight === 'all') ? 'grid-cols-1 xl:grid-cols-3' : 'grid-cols-1 max-w-3xl mx-auto';
-
             const cardsHtml = ds.concepts.map((concept, cIdx) => {
-                if (columnSpotlight !== 'all' && columnSpotlight !== cIdx) return '';
                 const valObj = dim.values[cIdx];
 
                 return `
@@ -2382,7 +2121,7 @@
                                 </div>
                             </div>
 
-                            <!-- Main Academic Content -->
+                            <!-- Main Content -->
                             <div class="p-5 pt-2">
                                 ${renderConceptCellBody(valObj, concept)}
                             </div>
@@ -2400,9 +2139,9 @@
             const stageHtml = `
                 <!-- Dimension Visual Banner with Stock Photo -->
                 <div class="relative h-48 sm:h-56 bg-slate-900 overflow-hidden">
-                    <img src="${dim.image}" alt="${dim.name}" class="w-full h-full object-cover opacity-40"
+                    <img src="${dim.image}" alt="${dim.name}" class="w-full h-full object-cover opacity-55"
                          onerror="this.src='https://placehold.co/1200x400/0f172a/38bdf8?text=${encodeURIComponent(dim.name)}'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/65 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/55 to-transparent"></div>
 
                     <!-- Top Prev/Next Controls inside Stage -->
                     <div class="absolute top-4 left-5 right-5 flex items-center justify-between">
@@ -2426,8 +2165,8 @@
                                 <i class="${dim.icon}"></i>
                             </div>
                             <div>
-                                <h2 class="text-xl sm:text-3xl font-extrabold text-white tracking-tight">${highlightText(dim.name)}</h2>
-                                <p class="text-xs sm:text-sm text-slate-300 mt-0.5">${dim.visualSubtitle}</p>
+                                <h2 class="text-xl sm:text-3xl font-extrabold text-white tracking-tight">${dim.name}</h2>
+                                <p class="text-xs sm:text-sm text-slate-200 mt-0.5">${dim.visualSubtitle}</p>
                             </div>
                         </div>
                     </div>
@@ -2448,7 +2187,7 @@
 
                 <!-- 3 Concept Comparison Cards Grid -->
                 <div class="p-5 sm:p-7">
-                    <div class="grid ${gridColsClass} gap-5">
+                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
                         ${cardsHtml}
                     </div>
                 </div>
@@ -2460,16 +2199,6 @@
         function renderFullMatrix() {
             const ds = activeDataset;
             const rowsHtml = ds.dimensions.map((dim, dIdx) => {
-                // If search query is active, filter dimensions that match
-                if (searchQuery.length >= 2) {
-                    const serialized = JSON.stringify(dim).toLowerCase();
-                    if (!serialized.includes(searchQuery.toLowerCase())) {
-                        return '';
-                    }
-                }
-
-                const gridColsClass = (columnSpotlight === 'all') ? 'grid-cols-1 lg:grid-cols-3' : 'grid-cols-1 max-w-3xl mx-auto';
-
                 return `
                     <div class="p-5 sm:p-7 hover:bg-slate-50/60 transition-colors">
                         <!-- Dimension Row Header with Visual Thumbnail -->
@@ -2484,7 +2213,7 @@
                                 </div>
                                 <div>
                                     <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Dimensión Comparativa ${dim.number}</span>
-                                    <h4 class="text-lg sm:text-xl font-extrabold text-slate-900">${highlightText(dim.name)}</h4>
+                                    <h4 class="text-lg sm:text-xl font-extrabold text-slate-900">${dim.name}</h4>
                                     <p class="text-xs text-slate-500 mt-0.5">${dim.visualSubtitle}</p>
                                 </div>
                             </div>
@@ -2495,9 +2224,8 @@
                         </div>
 
                         <!-- 3 Concept Columns -->
-                        <div class="grid ${gridColsClass} gap-5">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
                             ${ds.concepts.map((concept, cIdx) => {
-                                if (columnSpotlight !== 'all' && columnSpotlight !== cIdx) return '';
                                 const valObj = dim.values[cIdx];
                                 return `
                                     <div class="rounded-2xl ${concept.softBg} border ${concept.borderCol} p-5 flex flex-col justify-between">
@@ -2523,119 +2251,21 @@
                 `;
             }).join('');
 
-            document.getElementById('matrix-rows-container').innerHTML = rowsHtml || `
-                <div class="p-12 text-center">
-                    <i class="fa-solid fa-magnifying-glass text-3xl text-slate-300 mb-3"></i>
-                    <p class="text-base font-bold text-slate-700">No se encontraron dimensiones con "${searchQuery}"</p>
-                    <button onclick="clearSearch()" class="mt-3 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Limpiar búsqueda</button>
-                </div>
-            `;
-        }
-
-        function renderTimelineSynthesis() {
-            const ds = activeDataset;
-            const isC1 = (ds.id === 'cuadro1');
-
-            const html = `
-                <!-- Historical & Epistemological Evolution Card -->
-                <div class="bg-white rounded-3xl shadow-lg border border-slate-200/90 overflow-hidden">
-                    <div class="p-6 sm:p-8 bg-slate-900 text-white">
-                        <span class="text-xs font-bold uppercase tracking-widest text-blue-400">Evolución Histórica y Geográfica</span>
-                        <h3 class="text-xl sm:text-2xl font-extrabold mt-1">Línea de Tiempo Conceptual: ${ds.title}</h3>
-                        <p class="text-xs sm:text-sm text-slate-300 mt-1">Síntesis visual de autoría, lugar de acuñación, períodos de auge y casos organizacionales.</p>
-                    </div>
-
-                    <div class="p-6 sm:p-8">
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 relative">
-                            ${ds.concepts.map((c, idx) => {
-                                const authDim = ds.dimensions.find(d => d.name.includes('Autoría'));
-                                const locDim = ds.dimensions.find(d => d.name.includes('Lugar'));
-                                const eraDim = ds.dimensions.find(d => d.name.includes('Período'));
-                                const orgDim = ds.dimensions.find(d => d.name.includes('Ejemplos'));
-
-                                return `
-                                    <div class="rounded-3xl ${c.softBg} border-2 ${c.borderCol} p-6 flex flex-col justify-between relative">
-                                        <div>
-                                            <div class="flex items-center justify-between mb-4">
-                                                <span class="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-slate-900 text-white">
-                                                    Etapa ${idx + 1} · ${c.name}
-                                                </span>
-                                                <i class="${c.icon} text-2xl text-slate-700"></i>
-                                            </div>
-
-                                            <h4 class="text-xl font-extrabold text-slate-900 mb-1">${c.fullLabel}</h4>
-                                            <p class="text-xs font-semibold text-blue-700 mb-4">${c.badge}</p>
-
-                                            <div class="space-y-4 text-xs sm:text-sm">
-                                                <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80">
-                                                    <div class="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
-                                                        <i class="fa-solid fa-feather text-blue-600"></i> Autoría y Origen
-                                                    </div>
-                                                    <p class="text-slate-600 text-xs leading-relaxed">${authDim.values[idx].text}</p>
-                                                </div>
-
-                                                <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80">
-                                                    <div class="font-bold text-slate-900 mb-1.5 flex items-center gap-1.5">
-                                                        <i class="fa-solid fa-earth-americas text-emerald-600"></i> Lugar de Acuñación
-                                                    </div>
-                                                    <div class="flex flex-wrap gap-1 mb-1.5">
-                                                        ${locDim.values[idx].locations.map(l => `<span class="px-2 py-0.5 rounded bg-slate-100 text-[11px] font-semibold">${l}</span>`).join('')}
-                                                    </div>
-                                                    <p class="text-slate-500 text-[11px]">${locDim.values[idx].text}</p>
-                                                </div>
-
-                                                <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80">
-                                                    <div class="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
-                                                        <i class="fa-solid fa-clock text-amber-600"></i> Período de Auge
-                                                    </div>
-                                                    <p class="text-slate-600 text-xs leading-relaxed">${eraDim.values[idx].text}</p>
-                                                </div>
-
-                                                <div class="p-3.5 rounded-2xl bg-white border border-slate-200/80">
-                                                    <div class="font-bold text-slate-900 mb-2 flex items-center gap-1.5">
-                                                        <i class="fa-solid fa-building text-indigo-600"></i> Ejemplos Organizacionales
-                                                    </div>
-                                                    <div class="space-y-2">
-                                                        ${(orgDim.values[idx].orgCards || []).map(card => `
-                                                            <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 border border-slate-200/80">
-                                                                ${ORG_LOGOS[card.logoKey] || ''}
-                                                                <div class="min-w-0">
-                                                                    <div class="text-xs font-bold text-slate-900 leading-snug">${card.title}</div>
-                                                                    <div class="text-[11px] font-semibold text-blue-700">${card.citation}</div>
-                                                                </div>
-                                                            </div>
-                                                        `).join('')}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('timeline-synthesis-container').innerHTML = html;
+            document.getElementById('matrix-rows-container').innerHTML = rowsHtml;
         }
 
         function renderActiveViewContent() {
             if (displayMode === 'explorer') {
                 renderExplorerStage();
-            } else if (displayMode === 'matrix') {
+            } else {
                 renderFullMatrix();
-            } else if (displayMode === 'timeline') {
-                renderTimelineSynthesis();
             }
         }
 
         function renderReferencesSection() {
             const refs = activeDataset.references;
-            document.getElementById('refs-count-badge').textContent = `${refs.length} Referencias APA`;
 
             const refsHtml = refs.map((ref, idx) => {
-                const fullCitation = `${ref.authors} ${ref.title} ${ref.source} ${ref.url}`;
                 return `
                     <div class="p-4 rounded-2xl bg-slate-50 hover:bg-blue-50/40 border border-slate-200/90 transition-all flex flex-col justify-between gap-3 group">
                         <div class="flex items-start gap-3">
@@ -2643,9 +2273,9 @@
                                 ${idx + 1}
                             </span>
                             <div class="text-xs sm:text-sm text-slate-700 leading-relaxed break-words min-w-0">
-                                <span class="font-bold text-slate-900">${highlightText(ref.authors)}</span>
-                                <em class="text-slate-800"> ${highlightText(ref.title)}</em>
-                                <span> ${highlightText(ref.source)}</span>
+                                <span class="font-bold text-slate-900">${ref.authors}</span>
+                                <em class="text-slate-800"> ${ref.title}</em>
+                                <span> ${ref.source}</span>
                             </div>
                         </div>
 
@@ -2687,13 +2317,6 @@
             setTimeout(() => {
                 toast.classList.add('hidden');
             }, 2800);
-        }
-
-        function scrollToReferences() {
-            const el = document.getElementById('references-section');
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-            }
         }
 
         // Keyboard Navigation Support (Left/Right Arrows for Dimension Explorer)
